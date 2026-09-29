@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="RTTS 사전">
+<meta name="theme-color" content="#EEF1F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1524" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px)}</style>
+</head>
+<body>
+<title>RTTS 토큰 능력치 사전</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: 한 화면 앱 — 상단 고정 헤더(제목+검색), 스크롤 리스트, 하단 고정 탭바 */
+:root{
+  --bg:#EEF1F4; --card:#FFFFFF; --ink:#14213A; --muted:#5B667A; --line:#D5DBE3;
+  --stitch:#C62F2F; --hit:#1F5FBF; --pit:#C62F2F; --def:#2E7D5B; --chip:#E4E9F0; --bar:#FFFFFFEE;
+  --display:"Black Han Sans","Noto Sans KR",sans-serif;
+  --body:"Noto Sans KR",-apple-system,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1524; --card:#172134; --ink:#E7ECF3; --muted:#9AA6BA; --line:#2A3650;
+  --stitch:#FF6B5E; --hit:#6FA8FF; --pit:#FF6B5E; --def:#5FCB9A; --chip:#223049; --bar:#111A2BEE; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1524; --card:#172134; --ink:#E7ECF3; --muted:#9AA6BA; --line:#2A3650;
+  --stitch:#FF6B5E; --hit:#6FA8FF; --pit:#FF6B5E; --def:#5FCB9A; --chip:#223049; --bar:#111A2BEE; color-scheme:dark}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;margin:0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bar);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding-inline:16px;padding-block:12px 10px}
+.top-in{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.brand h1{font-family:var(--display);font-weight:400;font-size:1.45rem;margin:0;line-height:1.2}
+.brand small{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--stitch)}
+.searchrow{display:flex;gap:8px}
+#q{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+#q:focus{outline:2px solid var(--hit);outline-offset:0}
+#star{font:inherit;font-size:.85rem;font-weight:700;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--muted);white-space:nowrap}
+#star[aria-pressed="true"]{background:var(--stitch);border-color:var(--stitch);color:#fff}
+
+main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:14px calc(96px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px}
+.group{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ghead{padding:12px 14px 10px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.ghead .t{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.ghead .en{font-family:var(--mono);font-weight:700;font-size:.82rem}
+.ghead .ko{font-weight:700;font-size:1.02rem}
+.ghead .sum{color:var(--muted);font-size:.82rem}
+.hit .en{color:var(--hit)} .pit .en{color:var(--pit)} .def .en{color:var(--def)}
+.item{padding:11px 14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.item:first-of-type{border-top:0}
+.item .h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.item code{font-family:var(--mono);font-size:.78rem;font-weight:700;background:var(--chip);padding:2px 7px;border-radius:5px}
+.item .kor{font-weight:700;font-size:.97rem}
+.item .d{font-size:.9rem;color:var(--ink);opacity:.88}
+.tag{font-size:.68rem;font-weight:700;padding:0 7px;border-radius:999px;border:1px solid currentColor;line-height:1.6}
+.t-star{color:var(--stitch)} .t-c{color:var(--def)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+.sec-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin:4px 2px -6px}
+
+.pci{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.pci svg{flex:0 0 92px;max-width:92px}
+.pci p{margin:0;font-size:.85rem;min-width:0}
+.pci b{color:var(--hit)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.card h3{margin:0;font-size:1rem}
+.card p,.card ol{margin:0;font-size:.9rem}
+.card ol{padding-left:1.2em}
+.card .k{font-family:var(--mono);font-size:.72rem;color:var(--stitch);letter-spacing:.08em}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--bar);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabbar-in{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.tab{font:inherit;background:none;border:0;color:var(--muted);padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.72rem;font-weight:700;cursor:pointer}
+.tab svg{width:24px;height:24px}
+.tab[aria-selected="true"]{color:var(--ink)}
+.tab[aria-selected="true"] .ic{stroke:var(--tc)}
+.tab:focus-visible{outline:2px solid var(--stitch);outline-offset:-4px;border-radius:8px}
+.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.seg{display:flex;gap:6px;background:var(--chip);padding:4px;border-radius:12px}
+.seg button{flex:1;font:inherit;font-size:.85rem;font-weight:700;border:0;border-radius:9px;padding:7px 0;background:none;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px #0002}
+.build{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.build .bh{padding:13px 14px 10px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:3px;border-left:5px solid var(--bc)}
+.build .bh .role{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--bc)}
+.build .bh h3{margin:0;font-size:1.08rem}
+.build .bh p{margin:0;font-size:.85rem;color:var(--muted)}
+.tier{display:grid;grid-template-columns:54px 1fr;gap:8px;padding:9px 14px;border-top:1px solid var(--line);align-items:start}
+.tier:first-of-type{border-top:0}
+.tier .lv{font-size:.72rem;font-weight:700;color:var(--muted);padding-top:4px}
+.tier.p1 .lv{color:var(--stitch)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.chip{font:inherit;font-family:var(--mono);font-size:.76rem;font-weight:700;background:var(--chip);color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:3px 8px;cursor:pointer;text-align:left}
+.chip span{font-family:var(--body);font-weight:500;color:var(--muted);margin-left:4px}
+.tier.p1 .chip{border-color:var(--stitch)}
+.tier.skip .chip{opacity:.6;text-decoration:line-through;text-decoration-color:var(--muted)}
+.btip{padding:10px 14px 12px;border-top:1px dashed var(--line);font-size:.85rem}
+.btip b{color:var(--bc)}
+.hint{font-size:.8rem;color:var(--muted);text-align:center;margin:0}
+@media (prefers-reduced-motion:no-preference){main{animation:fade .18s ease-out}}
+@keyframes fade{from{opacity:.4}to{opacity:1}}
+</style>
+
+<div class="top"><div class="top-in">
+  <div class="brand"><h1>RTTS 능력치 사전</h1><small>THE SHOW 26</small></div>
+  <div class="searchrow">
+    <input id="q" type="search" placeholder="영어·한국어로 검색 (예: vision, 제구)" autocomplete="off" aria-label="능력치 검색">
+    <button id="star" type="button" aria-pressed="false">★ 핵심만</button>
+  </div>
+</div></div>
+
+<main id="main" aria-live="polite"></main>
+
+<nav class="tabbar" aria-label="탭"><div class="tabbar-in" role="tablist">
+  <button class="tab" role="tab" data-tab="hit" style="--tc:var(--hit)"><svg viewBox="0 0 24 24"><path class="ic" d="M4 20 L16 8 M14 6 l4 4 M17 3 l4 4-3 3-4-4z"/></svg>타자</button>
+  <button class="tab" role="tab" data-tab="pit" style="--tc:var(--pit)"><svg viewBox="0 0 24 24"><circle class="ic" cx="12" cy="12" r="8"/><path class="ic" d="M7 6c2 3 2 9 0 12M17 6c-2 3-2 9 0 12"/></svg>투수</button>
+  <button class="tab" role="tab" data-tab="def" style="--tc:var(--def)"><svg viewBox="0 0 24 24"><path class="ic" d="M6 10a6 6 0 0 1 12 0v4a6 6 0 0 1-12 0z M9 8v6 M12 7v7 M15 8v6"/></svg>수비·주루</button>
+  <button class="tab" role="tab" data-tab="build" style="--tc:var(--stitch)"><svg viewBox="0 0 24 24"><circle class="ic" cx="12" cy="8" r="4"/><path class="ic" d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>빌드</button>
+  <button class="tab" role="tab" data-tab="guide" style="--tc:var(--ink)"><svg viewBox="0 0 24 24"><path class="ic" d="M5 4h10l4 4v12H5z M9 12h6 M9 16h6"/></svg>가이드</button>
+</div></nav>
+
+<script>
+const D={
+hit:[
+ {en:"CONTACT",ko:"컨택 · 맞히는 능력",sum:"PCI(타격 커서)를 키워 안타 확률을 올리는 기본기",items:[
+  ["Contact vs L","좌투수 상대 컨택",1,"왼손 투수 상대 PCI가 커짐"],
+  ["Contact vs R","우투수 상대 컨택",1,"오른손 투수 상대 PCI 증가. 우투수가 더 많아 L보다 먼저"],
+  ["Plate Vision","선구안(시야)",0,"좌우 상관없이 PCI 전체 크기 증가. 삼진 감소"],
+  ["Clutch","득점권 타격(클러치)",0,"2·3루 주자가 있으면 Contact 대신 적용"]]},
+ {en:"POWER",ko:"파워 · 장타력",sum:"타구 속도를 올려 장타와 홈런을 만듦",items:[
+  ["Power vs L","좌투수 상대 파워",0,"왼손 투수 상대 타구 힘 증가"],
+  ["Power vs R","우투수 상대 파워",1,"오른손 투수 상대 타구 힘 증가. 거포형 최우선"]]},
+ {en:"OTHER",ko:"기타 타격",sum:"Other 그룹 안의 타자용 항목",items:[
+  ["Plate Discipline","타석 인내심",0,"체크 스윙 성공률 증가. 볼에 헛스윙 감소"],
+  ["Bunting","희생 번트",0,"번트를 제대로 대는 능력"],
+  ["Drag Bunting","기습 번트",0,"번트로 안타를 만드는 능력. 발 빠른 타자용"]]}
+],
+pit:[
+ {en:"STUFF",ko:"구위 · 공의 위력",sum:"상대 타자의 PCI를 줄여 치기 어렵게 만듦",items:[
+  ["H/9 R","우타자 피안타 억제",1,"오른손 타자 PCI 안쪽(정타 구역) 축소"],
+  ["H/9 L","좌타자 피안타 억제",0,"왼손 타자 상대 같은 효과"],
+  ["K/9 R","우타자 탈삼진",1,"오른손 타자 PCI 바깥 축소 → 헛스윙 유도"],
+  ["K/9 L","좌타자 탈삼진",0,"왼손 타자 상대 같은 효과"],
+  ["HR/9","피홈런 억제",0,"주로 시뮬레이션 결과에 반영. 우선순위 낮음"],
+  ["Pitching Clutch","위기관리(투수 클러치)",0,"득점권 위기에서 H/9·K/9 대신 적용. Bear Down 충전·사용 횟수 증가"]]},
+ {en:"OTHER",ko:"기타 투수",sum:"Other 그룹 안의 투수용 항목",items:[
+  ["Control","제구력",1,"원하는 곳에 던지는 능력. 공마다 완벽 정확도 구역(PAR) 크기"],
+  ["Stamina","체력",0,"오래 던져도 덜 지침. 선발 필수"]]},
+ {en:"PITCHES",ko:"구종별 능력치",sum:"포심·슬라이더 등 구종마다 따로 있는 수치",items:[
+  ["Velocity","구속",0,"그 구종의 최고 속도. 구종 간 속도 차이가 클수록 유리"],
+  ["Control","구종 제구",0,"해당 구종만의 제구 정확도"],
+  ["Break","무브먼트(변화량)",0,"휘거나 떨어지는 정도. 변화구의 핵심"]]}
+],
+def:[
+ {en:"FIELDING",ko:"수비",sum:"타구 처리 범위와 반응",items:[
+  ["Fielding","수비 능력",0,"실책 없이 공을 처리하는 기본 수비력"],
+  ["Reaction","반응 속도",0,"타구 첫 반응. 26부터 앞·뒤·좌·우 4방향으로 나뉨"],
+  ["Blocking","블로킹",2,"빠진 공을 몸으로 막는 능력"],
+  ["Pop Time","송구 준비 시간",2,"포구 후 2루 송구까지 시간. 도루 저지력"]]},
+ {en:"THROWING",ko:"송구",sum:"외야수·유격수에게 특히 중요",items:[
+  ["Arm Strength","어깨 힘",0,"송구 속도"],
+  ["Arm Accuracy","송구 정확도",0,"빗나가는 송구 감소. 수동 송구 시 초록 구역 확대"]]},
+ {en:"SPEED",ko:"스피드 · 주루",sum:"내야안타, 추가 진루, 도루",items:[
+  ["Speed","주력",1,"베이스 사이 달리기 속도. 수비 범위에도 영향"],
+  ["Stealing","도루 능력",0,"도루 성공률"],
+  ["B/R Aggressiveness","주루 적극성",0,"주루 중 버튼 이벤트(QTE) 효과 강화"]]},
+ {en:"OTHER",ko:"공통",sum:"투타 모두 해당",items:[
+  ["Durability","내구성",0,"부상 확률 감소. 급하지 않음"]]}
+]};
+const TAB_KO={hit:"타자",pit:"투수",def:"수비·주루"};
+// 빌드: [역할, 이름, 설명, 1순위[], 2순위[], 3순위[], 후순위[], 팁]
+const B=[
+ {k:"pit",role:"STARTING PITCHER · 파워형",name:"선발투수 (파워 피처)",desc:"강속구와 삼진으로 이닝을 길게 먹는 에이스",
+  t:[["K/9 R","K/9 L"],["H/9 R","Velocity"],["Stamina","Control"]],skip:["HR/9","Durability"],
+  tip:"선발은 체력이 떨어지면 모든 수치가 같이 떨어집니다. <b>Stamina</b>를 70 이상은 확보해 두세요."},
+ {k:"pit",role:"STARTING PITCHER · 기교파",name:"선발투수 (제구·기교형)",desc:"구속보다 코너 제구와 변화구로 맞혀 잡는 스타일",
+  t:[["Control","H/9 R"],["H/9 L","Break"],["Stamina","Pitching Clutch"]],skip:["HR/9","Velocity"],
+  tip:"맞혀 잡는 투수는 <b>H/9</b>가 핵심입니다. 타자의 정타 구역이 줄어 약한 타구가 늘어납니다."},
+ {k:"pit",role:"CLOSER",name:"마무리 투수",desc:"9회 1이닝을 확실하게 막는 불펜 에이스",
+  t:[["K/9 R","Pitching Clutch"],["K/9 L","Velocity"],["Control"]],skip:["Stamina","HR/9"],
+  tip:"1이닝만 던지므로 <b>Stamina</b>는 거의 필요 없습니다. 아낀 토큰을 탈삼진과 위기관리에 몰아주세요."},
+ {k:"pit",role:"SETUP / LONG RELIEF",name:"셋업·롱릴리프",desc:"7~8회 또는 선발 조기 강판 시 2~3이닝 책임",
+  t:[["H/9 R","K/9 R"],["Control","Pitching Clutch"],["Stamina","H/9 L"]],skip:["HR/9"],
+  tip:"롱릴리프는 2~3이닝을 던지므로 마무리보다 <b>Stamina</b>를 조금 더 챙기세요."},
+ {k:"hit",role:"CONTACT HITTER",name:"교타자 (애버리지형)",desc:"높은 타율, 적은 삼진, 어떤 투수든 공을 맞히는 스타일",
+  t:[["Contact vs R","Plate Vision"],["Contact vs L","Clutch"],["Plate Discipline","Speed"]],skip:["Power vs L","Bunting"],
+  tip:"컨택 계열은 PCI 자체를 키웁니다. 타격 조작이 서툴수록 <b>체감 효과가 가장 큰</b> 투자입니다."},
+ {k:"hit",role:"POWER HITTER",name:"거포 (슬러거)",desc:"중심타선에서 홈런과 장타를 노리는 스타일",
+  t:[["Power vs R","Contact vs R"],["Power vs L","Plate Vision"],["Clutch","Plate Discipline"]],skip:["Speed","Stealing","Drag Bunting"],
+  tip:"파워만 올리면 공을 못 맞힙니다. <b>Power vs R</b>과 <b>Contact vs R</b>을 번갈아 올리세요."},
+ {k:"hit",role:"LEADOFF",name:"리드오프 (호타준족)",desc:"출루 후 도루로 흔드는 1번 타자",
+  t:[["Contact vs R","Speed"],["Plate Vision","Stealing"],["B/R Aggressiveness","Drag Bunting"]],skip:["Power vs L","Power vs R"],
+  tip:"출루가 먼저입니다. 도루 능력은 <b>Speed</b>가 받쳐줘야 효과가 납니다."},
+ {k:"def",role:"SHORTSTOP / 2B",name:"수비형 내야수 (유격수·2루수)",desc:"넓은 수비 범위와 강한 송구로 팀을 지키는 스타일",
+  t:[["Fielding","Reaction"],["Arm Accuracy","Arm Strength"],["Contact vs R","Speed"]],skip:["Power vs L","Stealing"],
+  tip:"유격수는 깊은 타구가 많아 <b>Arm Strength</b>, 2루수는 병살 연결이 많아 <b>Arm Accuracy</b>를 조금 더 우선하세요."},
+ {k:"def",role:"CENTER FIELD",name:"중견수 (외야 수비형)",desc:"넓은 외야를 커버하고 홈 보살을 노리는 스타일",
+  t:[["Speed","Reaction"],["Arm Strength","Fielding"],["Arm Accuracy","Contact vs R"]],skip:["Bunting"],
+  tip:"외야 수비 범위는 사실상 <b>Speed</b>와 <b>Reaction</b>(특히 뒤쪽 방향)이 결정합니다."},
+ {k:"def",role:"CATCHER",name:"포수",desc:"도루 저지와 블로킹으로 투수를 돕는 안방마님",
+  t:[["Pop Time","Blocking"],["Arm Strength","Arm Accuracy"],["Contact vs R","Durability"]],skip:["Speed","Stealing","Drag Bunting"],
+  tip:"포수는 Reaction 대신 <b>Blocking</b>과 <b>Pop Time</b>이 적용됩니다. 출전이 많아 부상 대비로 <b>Durability</b>도 챙길 만합니다."},
+ {k:"two",role:"TWO-WAY",name:"투타겸업",desc:"마운드와 타석 모두 서는 스타일. 토큰 획득 기회가 가장 많음",
+  t:[["K/9 R","Contact vs R"],["Power vs R","Control"],["Stamina","Plate Vision"]],skip:["Stealing","Bunting","Drag Bunting"],
+  tip:"양쪽을 다 키우려면 토큰이 부족합니다. <b>한쪽을 주력</b>으로 먼저 키우고 나머지를 따라가게 하세요."}
+];
+const BC={pit:"var(--pit)",hit:"var(--hit)",def:"var(--def)",two:"var(--stitch)"};
+let bf='all';
+function buildHTML(){
+  const segs=[['all','전체'],['pit','투수'],['hit','타자'],['def','수비']];
+  let h=`<div class="seg" role="group" aria-label="빌드 종류">${segs.map(([k,l])=>`<button type="button" data-bf="${k}" aria-pressed="${bf===k}">${l}</button>`).join('')}</div><p class="hint">능력치 칩을 누르면 뜻을 바로 볼 수 있습니다.</p>`;
+  const kor=n=>{for(const k of ['hit','pit','def'])for(const g of D[k])for(const it of g.items)if(it[0]===n)return it[1];return '';};
+  const chip=n=>`<button type="button" class="chip" data-q="${esc(n)}">${esc(n)}<span>${esc(kor(n))}</span></button>`;
+  B.filter(b=>bf==='all'||b.k===bf||(bf==='hit'&&b.k==='two')).forEach(b=>{
+    h+=`<div class="build" style="--bc:${BC[b.k]}"><div class="bh"><span class="role">${b.role}</span><h3>${b.name}</h3><p>${b.desc}</p></div>`;
+    b.t.forEach((arr,i)=>h+=`<div class="tier${i===0?' p1':''}"><span class="lv">${i+1}순위</span><div class="chips">${arr.map(chip).join('')}</div></div>`);
+    h+=`<div class="tier skip"><span class="lv">후순위</span><div class="chips">${b.skip.map(chip).join('')}</div></div><div class="btip">${b.tip}</div></div>`;
+  });
+  return h;
+}
+const main=document.getElementById('main'), q=document.getElementById('q'), star=document.getElementById('star');
+let tab='hit';
+try{const s=localStorage.getItem('rtts-tab'); if(s) tab=s;}catch(e){}
+
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function itemHTML(it){
+  const tag=it[2]===1?'<span class="tag t-star">★ 핵심</span>':it[2]===2?'<span class="tag t-c">포수</span>':'';
+  return `<div class="item"><div class="h"><code>${esc(it[0])}</code><span class="kor">${esc(it[1])}</span>${tag}</div><div class="d">${esc(it[3])}</div></div>`;
+}
+function groupHTML(g,cls,items){
+  return `<div class="group ${cls}"><div class="ghead"><div class="t"><span class="en">${g.en}</span><span class="ko">${g.ko}</span></div><div class="sum">${g.sum}</div></div>${items.map(itemHTML).join('')}</div>`;
+}
+const PCI=`<div class="pci"><svg viewBox="0 0 92 92" aria-hidden="true"><rect x="10" y="6" width="72" height="80" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/><ellipse cx="46" cy="46" rx="30" ry="24" fill="var(--hit)" fill-opacity=".15" stroke="var(--hit)" stroke-width="2"/><ellipse cx="46" cy="46" rx="13" ry="10" fill="var(--hit)" fill-opacity=".4" stroke="var(--hit)" stroke-width="2"/></svg><p><b>바깥 원</b>은 공을 맞히는 범위로 Contact·Vision이 키웁니다. <b>안쪽 원</b>은 정타 구역입니다. Power는 맞은 뒤 날아가는 힘입니다.</p></div>`;
+const GUIDE=`
+<div class="sec-label">토큰 쓰는 법</div>
+<div class="card"><span class="k">STEP 1</span><h3>토큰 모으기</h3><p>안타·홈런, 탈삼진·무실점 이닝, 경기 전 목표(Goal) 달성, 훈련 미니게임 Gold 등급으로 획득합니다.</p></div>
+<div class="card"><span class="k">STEP 2</span><h3>메뉴 찾기</h3><p>RTTS 메인 화면 오른쪽 위 공구 아이콘(Tools)에서 업그레이드 메뉴로 들어갑니다.</p></div>
+<div class="card"><span class="k">STEP 3</span><h3>투자하기</h3><p>Contact 같은 그룹 전체에 넣거나 세부 능력치 하나만 골라 올립니다.</p></div>
+<div class="sec-label">추천 투자 순서</div>
+<div class="card"><h3>선수 스타일별 추천은 '빌드' 탭</h3><p>선발투수, 마무리, 거포, 리드오프, 포수 등 스타일별로 어떤 능력치를 먼저 올릴지 정리해 두었습니다.</p></div>
+<div class="card"><h3>팁</h3><p>한 곳에 몰아서 투자하는 편이 체감이 큽니다. 우투수·우타자가 더 많으니 R 수치를 먼저 올리세요. HR/9와 Durability는 후순위입니다.</p></div>`;
+
+function render(){
+  const term=q.value.trim().toLowerCase(), onlyStar=star.getAttribute('aria-pressed')==='true';
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===tab && !term ? 'true':'false'));
+  const match=it=>(!onlyStar||it[2]===1)&&(!term||(it[0]+' '+it[1]+' '+it[3]).toLowerCase().includes(term));
+  let html='';
+  if(term||onlyStar){
+    const keys=(term||!D[tab])?['hit','pit','def']:[tab];
+    keys.forEach(k=>D[k].forEach(g=>{const its=g.items.filter(match); if(its.length) html+=groupHTML({...g,en:TAB_KO[k]+' · '+g.en},k,its);}));
+    if(!html) html=`<div class="empty">'${esc(q.value)}'에 맞는 능력치가 없습니다.<br>영어 이름 일부(예: arm, clutch)로 검색해 보세요.</div>`;
+  } else if(tab==='guide'){ html=GUIDE; }
+  else if(tab==='build'){ html=buildHTML(); }
+  else { if(tab==='hit') html+=PCI; D[tab].forEach(g=>html+=groupHTML(g,tab,g.items)); }
+  main.innerHTML=html;
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  tab=b.dataset.tab; q.value=''; try{localStorage.setItem('rtts-tab',tab)}catch(e){}
+  render(); window.scrollTo(0,0);
+}));
+q.addEventListener('input',render);
+main.addEventListener('click',e=>{
+  const s=e.target.closest('[data-bf]'); if(s){bf=s.dataset.bf;render();return;}
+  const c=e.target.closest('[data-q]'); if(c){q.value=c.dataset.q;render();window.scrollTo(0,0);}
+});
+star.addEventListener('click',()=>{star.setAttribute('aria-pressed',star.getAttribute('aria-pressed')==='true'?'false':'true');render();});
+render();
+</script>
+
+<script>
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
+</script>
+</body></html>
