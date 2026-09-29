@@ -106,6 +106,15 @@ main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:14px calc(9
 .btip{padding:10px 14px 12px;border-top:1px dashed var(--line);font-size:.85rem}
 .btip b{color:var(--bc)}
 .hint{font-size:.8rem;color:var(--muted);text-align:center;margin:0}
+.tier.mix .chip{background:transparent;border-color:var(--pit)}
+.plus{color:var(--muted);font-weight:700;align-self:center}
+.why{padding:0 14px 10px 76px;font-size:.85rem;color:var(--muted)}
+.why b{color:var(--ink)}
+@media (max-width:420px){.why{padding-left:14px}}
+.term .en{color:var(--stitch)}
+.card.tips{gap:10px}
+.card.tips p{padding-top:10px;border-top:1px solid var(--line)}
+.card.tips .k+p{border-top:0;padding-top:0}
 @media (prefers-reduced-motion:no-preference){main{animation:fade .18s ease-out}}
 @keyframes fade{from{opacity:.4}to{opacity:1}}
 </style>
@@ -113,7 +122,7 @@ main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:14px calc(9
 <div class="top"><div class="top-in">
   <div class="brand"><h1>RTTS 능력치 사전</h1><small>THE SHOW 26</small></div>
   <div class="searchrow">
-    <input id="q" type="search" placeholder="영어·한국어로 검색 (예: vision, 제구)" autocomplete="off" aria-label="능력치 검색">
+    <input id="q" type="search" placeholder="영어·한국어 검색 (예: sinker, XBH, 제구)" autocomplete="off" aria-label="능력치 검색">
     <button id="star" type="button" aria-pressed="false">★ 핵심만</button>
   </div>
 </div></div>
@@ -158,7 +167,22 @@ pit:[
  {en:"PITCHES",ko:"구종별 능력치",sum:"포심·슬라이더 등 구종마다 따로 있는 수치",items:[
   ["Velocity","구속",0,"그 구종의 최고 속도. 구종 간 속도 차이가 클수록 유리"],
   ["Control","구종 제구",0,"해당 구종만의 제구 정확도"],
-  ["Break","무브먼트(변화량)",0,"휘거나 떨어지는 정도. 변화구의 핵심"]]}
+  ["Break","무브먼트(변화량)",0,"휘거나 떨어지는 정도. 변화구의 핵심"]]},
+ {en:"PITCH TYPES",ko:"구종 이름",sum:"투수 생성·구종 선택 화면에 나오는 영어 구종명",items:[
+  ["4-Seam Fastball","포심 패스트볼",0,"가장 빠르고 곧게 가는 직구. 높은 코스로 헛스윙 유도"],
+  ["2-Seam Fastball","투심 패스트볼",0,"포심보다 조금 느리고 던지는 팔 쪽으로 살짝 휘며 가라앉음"],
+  ["Sinker","싱커",0,"투심보다 더 가라앉는 빠른 공. 땅볼 유도용"],
+  ["Cutter","커터",0,"직구처럼 오다가 끝에서 반대쪽으로 짧게 꺾임. 빗맞은 타구 유도"],
+  ["Slider","슬라이더",0,"빠르게 옆으로 꺾이며 살짝 떨어짐. 대표적 헛스윙 구종"],
+  ["Sweeper","스위퍼",0,"슬라이더보다 옆으로 훨씬 크게 휘는 공"],
+  ["Curveball","커브",0,"느리고 크게 떨어지는 공. 직구와 속도 차이가 큼"],
+  ["Knuckle Curve","너클 커브",0,"커브보다 빠르고 날카롭게 떨어짐"],
+  ["Slurve","슬러브",0,"슬라이더와 커브의 중간. 대각선으로 휨"],
+  ["Changeup","체인지업",0,"직구 폼으로 던지지만 느린 공. 타이밍 뺏기"],
+  ["Circle Change","서클 체인지업",0,"체인지업에 휘는 움직임이 더해진 공"],
+  ["Splitter","스플리터",0,"직구처럼 오다 홈플레이트 앞에서 뚝 떨어짐. 삼진용"],
+  ["Forkball","포크볼",0,"스플리터보다 느리고 더 크게 떨어짐"],
+  ["Knuckleball","너클볼",0,"회전이 거의 없어 예측 불가하게 흔들림. 특수 구종"]]}
 ],
 def:[
  {en:"FIELDING",ko:"수비",sum:"타구 처리 범위와 반응",items:[
@@ -175,21 +199,79 @@ def:[
   ["B/R Aggressiveness","주루 적극성",0,"주루 중 버튼 이벤트(QTE) 효과 강화"]]},
  {en:"OTHER",ko:"공통",sum:"투타 모두 해당",items:[
   ["Durability","내구성",0,"부상 확률 감소. 급하지 않음"]]}
+],
+term:[
+ {en:"CHALLENGE WORDS",ko:"챌린지·퍽 조건 단어",sum:"경기 전 목표와 퍽 해금 조건에 자주 나오는 표현",items:[
+  ["Tally","누적 기록하다",0,"'Tally 10 career XBH' = 통산 장타 10개 달성"],
+  ["Career / Season","통산 / 시즌",0,"Career는 커리어 전체 누적, Season은 이번 시즌만"],
+  ["XBH","장타",0,"Extra-Base Hit. 2루타·3루타·홈런"],
+  ["RBI","타점",0,"내 타격으로 들어온 득점"],
+  ["RISP","득점권 주자",0,"Runners In Scoring Position. 2루나 3루에 주자가 있는 상황"],
+  ["Walk-off","끝내기",0,"9회 이후 홈팀이 경기를 끝내는 득점 (끝내기 안타·홈런)"],
+  ["Multi-hit game","멀티히트 경기",0,"한 경기 안타 2개 이상"],
+  ["Go-ahead / Game-tying","역전·리드 / 동점",0,"Go-ahead는 앞서가게 만드는, Game-tying은 동점을 만드는"],
+  ["Late in the game","경기 후반",0,"보통 7회 이후"],
+  ["On the road / At home","원정 / 홈 경기",0,"'on the road'가 붙으면 원정 경기에서만 해당"],
+  ["While your team is losing","팀이 지고 있을 때",0,"점수가 뒤진 상황에서만 발동·인정"],
+  ["Less than two outs","투아웃 전",0,"0아웃 또는 1아웃 상황"],
+  ["Working the count","볼카운트 끌기",0,"공을 많이 보며 투구 수를 늘리는 것. 토큰 점수 인정"]]},
+ {en:"PITCHING WORDS",ko:"투수 기록 용어",sum:"투수 챌린지·결과 화면 용어",items:[
+  ["Called strike","루킹 스트라이크",0,"타자가 안 쳤는데 스트라이크 판정. 토큰 점수 인정"],
+  ["Edge strike","코너 스트라이크",0,"존 가장자리에 꽂힌 스트라이크. 토큰 점수 인정"],
+  ["Scoreless inning","무실점 이닝",0,"한 이닝을 실점 없이 막음"],
+  ["K / BB","삼진 / 볼넷",0,"K는 삼진, BB는 Base on Balls(볼넷)"],
+  ["ER","자책점",0,"Earned Run. 실책 없이 내준 점수"],
+  ["Quality Start","퀄리티 스타트",0,"선발로 6이닝 이상, 3자책 이하"],
+  ["Save / Hold / Blown save","세이브 / 홀드 / 블론세이브",0,"블론세이브는 리드를 지키지 못한 것"],
+  ["Pitch count","투구 수",0,"많아지면 체력이 떨어져 교체됨"]]},
+ {en:"HITTING & FIELDING",ko:"타격·수비 용어",sum:"타자 챌린지와 수비 결과 용어",items:[
+  ["Productive out","진루타",0,"아웃되더라도 주자를 한 베이스 이상 보냄"],
+  ["Sac fly / Sac bunt","희생플라이 / 희생번트",0,"아웃과 맞바꿔 주자를 진루·득점시킴"],
+  ["SB / CS","도루 / 도루 실패",0,"Stolen Base / Caught Stealing"],
+  ["Assist","보살",0,"송구로 주자를 아웃시킨 수비. 토큰 점수 인정"],
+  ["Putout","아웃 처리",0,"직접 공을 잡거나 태그해서 아웃시킴"],
+  ["Double play","병살",0,"한 번에 아웃 2개"],
+  ["Error","실책",0,"수비 실수. 토큰 점수가 깎임"]]},
+ {en:"MENU WORDS",ko:"메뉴·커리어 용어",sum:"RTTS 메뉴와 커리어 진행 화면",items:[
+  ["OVR","종합 능력치",0,"Overall. 승격 판단에 쓰임"],
+  ["Perk","퍽(특수 능력)",0,"조건을 달성하면 해금되고, 특정 상황에 능력치 보너스"],
+  ["Equipment","장비",0,"26에서는 능력치가 아니라 퍽 효과를 강화"],
+  ["Care Package","무료 장비 상자",0,"10경기마다 지급"],
+  ["Outlook","승격 전망",0,"트리플A·메이저 승격까지 남은 정도를 보여주는 화면"],
+  ["Call-up / Sent down","승격 / 강등",0,"메이저로 올라감 / 마이너로 내려감"],
+  ["Scholarship","장학금 제안",0,"대학 진학 시 학교별 제안"],
+  ["Exposure / Skill Dev","스카우트 노출 / 성장 보너스",0,"대학 선택 기준. Exposure가 높으면 드래프트에 유리"],
+  ["Draft stock","드래프트 전망",0,"예상 지명 순위. 아마추어 경기 성적으로 오르내림"],
+  ["Free agency","FA(자유계약)",0,"메이저 6년 이후 자격 발생"],
+  ["Sim","자동 진행",0,"직접 조작하지 않고 결과만 계산"]]}
 ]};
-const TAB_KO={hit:"타자",pit:"투수",def:"수비·주루"};
+const TAB_KO={hit:"타자",pit:"투수",def:"수비·주루",term:"용어"};
 // 빌드: [역할, 이름, 설명, 1순위[], 2순위[], 3순위[], 후순위[], 팁]
 const B=[
- {k:"pit",role:"STARTING PITCHER · 파워형",name:"선발투수 (파워 피처)",desc:"강속구와 삼진으로 이닝을 길게 먹는 에이스",
+ {k:"pit",role:"STARTING PITCHER · 파이어볼러",name:"선발투수 (파이어볼러)",desc:"강속구와 삼진으로 이닝을 길게 먹는 에이스",
   t:[["K/9 R","K/9 L"],["H/9 R","Velocity"],["Stamina","Control"]],skip:["HR/9","Durability"],
+  mix:["4-Seam Fastball","Slider","Splitter","Changeup"],
+  why:"높게 던지는 <b>포심</b>과 낮게 떨어지는 <b>스플리터</b>가 같은 궤적으로 오다 위아래로 갈라집니다. 투스트라이크 이후 바깥으로 빠지는 <b>슬라이더</b>로 헛스윙을 뺏습니다.",
   tip:"선발은 체력이 떨어지면 모든 수치가 같이 떨어집니다. <b>Stamina</b>를 70 이상은 확보해 두세요."},
  {k:"pit",role:"STARTING PITCHER · 기교파",name:"선발투수 (제구·기교형)",desc:"구속보다 코너 제구와 변화구로 맞혀 잡는 스타일",
   t:[["Control","H/9 R"],["H/9 L","Break"],["Stamina","Pitching Clutch"]],skip:["HR/9","Velocity"],
+  mix:["Cutter","2-Seam Fastball","Changeup","Curveball"],
+  why:"<b>커터</b>와 <b>투심</b>이 서로 반대 방향으로 휘어 좌우를 흔들고, <b>커브</b>와 <b>체인지업</b>으로 속도를 바꿔 타이밍을 뺏습니다.",
   tip:"맞혀 잡는 투수는 <b>H/9</b>가 핵심입니다. 타자의 정타 구역이 줄어 약한 타구가 늘어납니다."},
+ {k:"pit",role:"STARTING PITCHER · 싱커볼러",name:"선발투수 (땅볼 유도형)",desc:"낮게 깔리는 공으로 땅볼과 병살을 만드는 스타일",
+  t:[["H/9 R","Control"],["Break","H/9 L"],["Stamina","Pitching Clutch"]],skip:["K/9 L","HR/9"],
+  mix:["Sinker","Slider","Changeup"],
+  why:"<b>싱커</b>는 팔 쪽으로, <b>슬라이더</b>는 반대쪽으로 휩니다. 둘 다 낮게 던지면 타자는 방향을 예측하기 어려워 땅볼이 늘어납니다.",
+  tip:"주자가 1루에 있을 때 싱커를 낮게 던지면 병살 확률이 올라갑니다. 삼진이 적어도 투구 수를 아낄 수 있어 이닝을 길게 갑니다."},
  {k:"pit",role:"CLOSER",name:"마무리 투수",desc:"9회 1이닝을 확실하게 막는 불펜 에이스",
   t:[["K/9 R","Pitching Clutch"],["K/9 L","Velocity"],["Control"]],skip:["Stamina","HR/9"],
+  mix:["4-Seam Fastball","Splitter","Slider"],
+  why:"1이닝만 던지므로 구종을 늘리기보다 <b>포심 + 결정구 1개</b>에 토큰을 몰아주는 편이 효과적입니다.",
   tip:"1이닝만 던지므로 <b>Stamina</b>는 거의 필요 없습니다. 아낀 토큰을 탈삼진과 위기관리에 몰아주세요."},
  {k:"pit",role:"SETUP / LONG RELIEF",name:"셋업·롱릴리프",desc:"7~8회 또는 선발 조기 강판 시 2~3이닝 책임",
   t:[["H/9 R","K/9 R"],["Control","Pitching Clutch"],["Stamina","H/9 L"]],skip:["HR/9"],
+  mix:["Cutter","Sweeper","4-Seam Fastball","Curveball"],
+  why:"<b>커터</b>와 <b>스위퍼</b>는 같은 방향으로 휘지만 휘는 크기가 달라 헷갈리게 만듭니다. 롱릴리프라면 느린 <b>커브</b>를 추가해 긴 이닝에 대비하세요.",
   tip:"롱릴리프는 2~3이닝을 던지므로 마무리보다 <b>Stamina</b>를 조금 더 챙기세요."},
  {k:"hit",role:"CONTACT HITTER",name:"교타자 (애버리지형)",desc:"높은 타율, 적은 삼진, 어떤 투수든 공을 맞히는 스타일",
   t:[["Contact vs R","Plate Vision"],["Contact vs L","Clutch"],["Plate Discipline","Speed"]],skip:["Power vs L","Bunting"],
@@ -211,6 +293,8 @@ const B=[
   tip:"포수는 Reaction 대신 <b>Blocking</b>과 <b>Pop Time</b>이 적용됩니다. 출전이 많아 부상 대비로 <b>Durability</b>도 챙길 만합니다."},
  {k:"two",role:"TWO-WAY",name:"투타겸업",desc:"마운드와 타석 모두 서는 스타일. 토큰 획득 기회가 가장 많음",
   t:[["K/9 R","Contact vs R"],["Power vs R","Control"],["Stamina","Plate Vision"]],skip:["Stealing","Bunting","Drag Bunting"],
+  mix:["4-Seam Fastball","Sweeper","Splitter"],
+  why:"타격에도 토큰을 써야 하므로 구종은 3개로 좁히세요. 빠른 공, 옆으로 휘는 공, 떨어지는 공이 하나씩 있으면 충분합니다.",
   tip:"양쪽을 다 키우려면 토큰이 부족합니다. <b>한쪽을 주력</b>으로 먼저 키우고 나머지를 따라가게 하세요."}
 ];
 const BC={pit:"var(--pit)",hit:"var(--hit)",def:"var(--def)",two:"var(--stitch)"};
@@ -218,12 +302,14 @@ let bf='all';
 function buildHTML(){
   const segs=[['all','전체'],['pit','투수'],['hit','타자'],['def','수비']];
   let h=`<div class="seg" role="group" aria-label="빌드 종류">${segs.map(([k,l])=>`<button type="button" data-bf="${k}" aria-pressed="${bf===k}">${l}</button>`).join('')}</div><p class="hint">능력치 칩을 누르면 뜻을 바로 볼 수 있습니다.</p>`;
-  const kor=n=>{for(const k of ['hit','pit','def'])for(const g of D[k])for(const it of g.items)if(it[0]===n)return it[1];return '';};
+  const kor=n=>{for(const k of ['pit','hit','def'])for(const g of D[k])for(const it of g.items)if(it[0]===n)return it[1];return '';};
   const chip=n=>`<button type="button" class="chip" data-q="${esc(n)}">${esc(n)}<span>${esc(kor(n))}</span></button>`;
   B.filter(b=>bf==='all'||b.k===bf||(bf==='hit'&&b.k==='two')).forEach(b=>{
     h+=`<div class="build" style="--bc:${BC[b.k]}"><div class="bh"><span class="role">${b.role}</span><h3>${b.name}</h3><p>${b.desc}</p></div>`;
     b.t.forEach((arr,i)=>h+=`<div class="tier${i===0?' p1':''}"><span class="lv">${i+1}순위</span><div class="chips">${arr.map(chip).join('')}</div></div>`);
-    h+=`<div class="tier skip"><span class="lv">후순위</span><div class="chips">${b.skip.map(chip).join('')}</div></div><div class="btip">${b.tip}</div></div>`;
+    h+=`<div class="tier skip"><span class="lv">후순위</span><div class="chips">${b.skip.map(chip).join('')}</div></div>`;
+    if(b.mix) h+=`<div class="tier mix"><span class="lv">구종<br>조합</span><div class="chips">${b.mix.map(chip).join('<span class="plus">+</span>')}</div></div><div class="why">${b.why}</div>`;
+    h+=`<div class="btip">${b.tip}</div></div>`;
   });
   return h;
 }
@@ -240,14 +326,30 @@ function groupHTML(g,cls,items){
   return `<div class="group ${cls}"><div class="ghead"><div class="t"><span class="en">${g.en}</span><span class="ko">${g.ko}</span></div><div class="sum">${g.sum}</div></div>${items.map(itemHTML).join('')}</div>`;
 }
 const PCI=`<div class="pci"><svg viewBox="0 0 92 92" aria-hidden="true"><rect x="10" y="6" width="72" height="80" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/><ellipse cx="46" cy="46" rx="30" ry="24" fill="var(--hit)" fill-opacity=".15" stroke="var(--hit)" stroke-width="2"/><ellipse cx="46" cy="46" rx="13" ry="10" fill="var(--hit)" fill-opacity=".4" stroke="var(--hit)" stroke-width="2"/></svg><p><b>바깥 원</b>은 공을 맞히는 범위로 Contact·Vision이 키웁니다. <b>안쪽 원</b>은 정타 구역입니다. Power는 맞은 뒤 날아가는 힘입니다.</p></div>`;
+const MIXCARD=`<div class="card"><span class="k">구종 조합 3원칙</span><h3>타자를 속이는 세 가지 차이</h3><p><b>속도</b>: 빠른 직구 다음 느린 체인지업·커브는 같은 폼이라 타이밍이 무너집니다.<br><b>방향</b>: 싱커·투심(팔 쪽)과 슬라이더·커터(반대쪽)를 섞으면 좌우로 흔들 수 있습니다.<br><b>높이</b>: 높은 포심과 낮게 떨어지는 스플리터·커브는 처음엔 같은 공처럼 보입니다.</p><p style="color:var(--muted)">스타일별 추천 조합은 빌드 탭에 있습니다.</p></div>`;
 const GUIDE=`
 <div class="sec-label">토큰 쓰는 법</div>
-<div class="card"><span class="k">STEP 1</span><h3>토큰 모으기</h3><p>안타·홈런, 탈삼진·무실점 이닝, 경기 전 목표(Goal) 달성, 훈련 미니게임 Gold 등급으로 획득합니다.</p></div>
+<div class="card"><span class="k">STEP 1</span><h3>토큰 모으기</h3><p>플레이마다 화면에 뜨는 <b style="color:var(--def)">초록 +</b>/<b style="color:var(--stitch)">빨강 −</b> 숫자가 토큰 점수입니다. <b>100점이 모이면 토큰 1개</b>가 됩니다. 경기 전 챌린지와 훈련 미니게임 Gold 등급으로도 받습니다.</p></div>
 <div class="card"><span class="k">STEP 2</span><h3>메뉴 찾기</h3><p>RTTS 메인 화면 오른쪽 위 공구 아이콘(Tools)에서 업그레이드 메뉴로 들어갑니다.</p></div>
 <div class="card"><span class="k">STEP 3</span><h3>투자하기</h3><p>Contact 같은 그룹 전체에 넣거나 세부 능력치 하나만 골라 올립니다.</p></div>
-<div class="sec-label">추천 투자 순서</div>
-<div class="card"><h3>선수 스타일별 추천은 '빌드' 탭</h3><p>선발투수, 마무리, 거포, 리드오프, 포수 등 스타일별로 어떤 능력치를 먼저 올릴지 정리해 두었습니다.</p></div>
-<div class="card"><h3>팁</h3><p>한 곳에 몰아서 투자하는 편이 체감이 큽니다. 우투수·우타자가 더 많으니 R 수치를 먼저 올리세요. HR/9와 Durability는 후순위입니다.</p></div>`;
+<div class="sec-label">놓치기 쉬운 꿀팁</div>
+<div class="card tips"><span class="k">토큰 더 받기</span>
+<p><b>경기 전 챌린지 창을 건너뛰지 마세요.</b> Dynamic Challenge는 토큰 배수나 보너스를, Boss Challenge는 능력치 보너스를 줍니다. 가장 어려운 목표를 골라야 보상이 큽니다.</p>
+<p><b>투수는 삼진만 점수가 아닙니다.</b> 루킹 스트라이크(Called), 코너 스트라이크(Edge), 무실점 이닝도 점수라 한가운데보다 코너를 노리세요.</p>
+<p><b>타자는 안타 말고도 점수가 쌓입니다.</b> 공을 많이 보며 볼카운트를 끌거나, 수비에서 보살을 기록해도 인정됩니다.</p>
+<p><b>난이도는 토큰 양과 거의 상관없습니다.</b> 초반에는 난이도를 낮춰 좋은 성적으로 토큰을 모으고, 능력치가 오른 뒤 올려도 됩니다.</p></div>
+<div class="card tips"><span class="k">성장·장비</span>
+<p><b>퍽 해금 조건은 영어로 적혀 있습니다.</b> 예: 'Vision of 80+'는 선구안 80 이상, 'Tally 10 career XBH'는 통산 장타 10개. 아래 용어 사전을 참고하세요. 해금한 퍽도 토큰으로 레벨업하면 더 자주 발동합니다.</p>
+<p><b>장비는 능력치가 아니라 퍽을 강화합니다.</b> 등급별로 Diamond 6%, Gold 4%, Silver 2%입니다. 10경기마다 무료 장비 상자(Care Package)가 오니 확인하고 장착하세요.</p>
+<p><b>승격이 궁금하면 Outlook 화면</b>의 진행 바를 보세요. OVR, 능력치, 성적이 모두 반영됩니다.</p>
+<p><b>고졸 vs 대학</b>: 고졸은 프로 입단이 3년 빠르고 한동안 토큰 2배. 대학은 토큰은 적지만 학교별 성장 보너스와 포지션 퍽을 줍니다.</p></div>
+<div class="card tips"><span class="k">조작 쉽게</span>
+<p><b>타격이 어려우면 Fixed Zone(고정 존) 타격</b>을 켜 보세요. 26 신규 모드로, PCI가 내가 둔 위치에 고정됩니다. PCI 민감도는 70% 전후가 무난합니다.</p>
+<p><b>Bear Down</b>: 위기 상황에 투구 전 L2(Xbox는 LT)를 누르면 강화 투구가 됩니다. 횟수가 한정되니 경기 후반 위기를 위해 아껴 두세요.</p></div>
+<div class="card tips"><span class="k">커리어</span>
+<p><b>잘 맞을 땐 Sim, 슬럼프일 땐 직접 플레이</b>하는 게 성적 관리에 유리합니다. 기록이 걸린 경기는 직접 하세요.</p>
+<p><b>트레이드를 원하면</b> 홈 화면 메시지 아이콘으로 에이전트에게 요청할 수 있습니다.</p></div>
+<div class="sec-label">영어 용어 사전</div>`;
 
 function render(){
   const term=q.value.trim().toLowerCase(), onlyStar=star.getAttribute('aria-pressed')==='true';
@@ -255,12 +357,12 @@ function render(){
   const match=it=>(!onlyStar||it[2]===1)&&(!term||(it[0]+' '+it[1]+' '+it[3]).toLowerCase().includes(term));
   let html='';
   if(term||onlyStar){
-    const keys=(term||!D[tab])?['hit','pit','def']:[tab];
+    const keys=(term||!D[tab]||tab==='term')?(term?['hit','pit','def','term']:['hit','pit','def']):[tab];
     keys.forEach(k=>D[k].forEach(g=>{const its=g.items.filter(match); if(its.length) html+=groupHTML({...g,en:TAB_KO[k]+' · '+g.en},k,its);}));
-    if(!html) html=`<div class="empty">'${esc(q.value)}'에 맞는 능력치가 없습니다.<br>영어 이름 일부(예: arm, clutch)로 검색해 보세요.</div>`;
-  } else if(tab==='guide'){ html=GUIDE; }
+    if(!html) html=`<div class="empty">'${esc(q.value)}'에 맞는 능력치·용어가 없습니다.<br>영어 이름 일부(예: arm, clutch)로 검색해 보세요.</div>`;
+  } else if(tab==='guide'){ html=GUIDE; D.term.forEach(g=>html+=groupHTML(g,'term',g.items)); }
   else if(tab==='build'){ html=buildHTML(); }
-  else { if(tab==='hit') html+=PCI; D[tab].forEach(g=>html+=groupHTML(g,tab,g.items)); }
+  else { if(tab==='hit') html+=PCI; if(tab==='pit') html+=MIXCARD; D[tab].forEach(g=>html+=groupHTML(g,tab,g.items)); }
   main.innerHTML=html;
 }
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{

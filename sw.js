@@ -1,5 +1,5 @@
 // 오프라인 지원: 앱 파일은 설치 시 저장, 글꼴은 처음 불러올 때 저장
-const VERSION = 'rtts-v1';
+const VERSION = 'rtts-v2';
 const APP = ['./', './index.html', './manifest.webmanifest', './apple-touch-icon.png', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(APP)).then(() => self.skipWaiting()));
