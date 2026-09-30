@@ -80,8 +80,8 @@ main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:14px calc(9
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
 
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--bar);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabbar-in{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
-.tab{font:inherit;background:none;border:0;color:var(--muted);padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.72rem;font-weight:700;cursor:pointer}
+.tabbar-in{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
+.tab{font:inherit;background:none;border:0;color:var(--muted);padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.68rem;white-space:nowrap;font-weight:700;cursor:pointer}
 .tab svg{width:24px;height:24px}
 .tab[aria-selected="true"]{color:var(--ink)}
 .tab[aria-selected="true"] .ic{stroke:var(--tc)}
@@ -137,6 +137,76 @@ main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:14px calc(9
 .rcard h4{margin:0;font-size:.95rem;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .rcard .job{font-size:.72rem;font-weight:700;color:var(--muted)}
 .rcard p{margin:4px 0 0;font-size:.82rem;min-width:0}
+.live{display:flex;flex-direction:column;gap:12px}
+.board{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:10px 16px;align-items:center}
+.cnts{display:flex;flex-direction:column;gap:6px}
+.crow{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:.85rem;background:none;border:0;padding:0;color:var(--ink);font-size:.85rem;text-align:left;cursor:default}
+button.crow{cursor:pointer}
+.crow .lb{width:14px}
+.crow i{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);display:inline-block}
+.crow i.on{border-color:transparent;background:var(--oc)}
+.crow small{font-family:var(--body);font-weight:500;color:var(--muted);font-size:.72rem}
+.dia{display:grid;grid-template-columns:repeat(3,30px);grid-template-rows:30px 30px;gap:0;justify-items:center;align-items:center}
+.dia button{width:22px;height:22px;transform:rotate(45deg);border:2px solid var(--muted);background:var(--card);border-radius:3px;cursor:pointer;padding:0}
+.dia button[aria-pressed="true"]{background:var(--csi);border-color:var(--csi)}
+.dia .b2{grid-column:2;grid-row:1}.dia .b3{grid-column:1;grid-row:2}.dia .b1{grid-column:3;grid-row:2}
+.dia-lab{font-size:.68rem;color:var(--muted);text-align:center;margin-top:2px}
+.brow{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap}
+.mini{font:inherit;font-size:.78rem;font-weight:700;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.mini[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.res{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.res button{font:inherit;font-weight:700;font-size:.9rem;border:0;border-radius:12px;padding:13px 0;color:var(--dotink);cursor:pointer;background:var(--rc)}
+.res button:active{transform:scale(.97)}
+.rlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.rlist li{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font-size:.86rem}
+.rlist li.top{font-size:.92rem}
+.rlist .why{padding:0;color:var(--muted);font-size:.8rem;display:block}
+.throw{font:inherit;font-size:.78rem;font-weight:700;border:1.5px solid var(--pc);color:var(--ink);background:none;border-radius:10px;padding:7px 10px;cursor:pointer;white-space:nowrap}
+.warn{border-radius:10px;padding:8px 12px;font-size:.84rem;background:var(--chip)}
+.warn b{color:var(--stitch)}
+.flash{font-size:.84rem;font-weight:700;color:var(--def);text-align:center}
+.hist{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;font-size:.78rem}
+.hist li{background:var(--chip);border-radius:8px;padding:3px 8px}
+.my{display:flex;flex-direction:column;gap:12px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:.72rem;font-weight:700;color:var(--muted)}
+.field input,.field select{font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);min-width:0}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px}
+.field select{width:100%;text-overflow:ellipsis}
+@media (max-width:420px){.two{grid-template-columns:minmax(0,1fr)}}
+.recbox{background:var(--ink);color:var(--card);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.recbox .k{color:var(--csi)}
+.recbox h3{margin:0;font-size:1rem}
+.recbox ol{margin:0;padding-left:1.2em;font-size:.9rem;display:flex;flex-direction:column;gap:4px}
+.recbox small{opacity:.75;font-size:.78rem}
+.att{padding:11px 14px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 64px 56px;gap:4px 10px;align-items:center}
+.att:first-of-type{border-top:0}
+.att .nm{min-width:0}
+.att .nm code{font-family:var(--mono);font-size:.76rem;font-weight:700;background:var(--chip);padding:1px 6px;border-radius:5px}
+.att .nm span{display:block;font-size:.84rem;font-weight:700;margin-top:2px}
+.att input{font:inherit;font-size:16px;width:100%;padding:7px 6px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink);text-align:center;font-variant-numeric:tabular-nums}
+.att input.tg{font-size:14px;color:var(--muted)}
+.att .bar{grid-column:1/-1;height:6px;border-radius:3px;background:var(--chip);overflow:hidden}
+.att .bar i{display:block;height:100%;background:var(--bc);border-radius:3px;transition:width .2s}
+.att .bar i.done{background:var(--def)}
+.colh{display:grid;grid-template-columns:1fr 64px 56px;gap:10px;padding:8px 14px 0;font-size:.7rem;font-weight:700;color:var(--muted)}
+.colh span:nth-child(n+2){text-align:center}
+.perk{padding:11px 14px;border-top:1px solid var(--line);display:grid;grid-template-columns:34px 1fr;gap:4px 10px;align-items:start}
+.perk:first-of-type{border-top:0}
+.perk.got{opacity:.55}
+.chk{width:30px;height:30px;border-radius:9px;border:2px solid var(--line);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;color:var(--dotink)}
+.chk[aria-pressed="true"]{background:var(--def);border-color:var(--def)}
+.chk svg{width:18px;height:18px}
+.perk .pn{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
+.perk .pn b{font-family:var(--mono);font-size:.86rem}
+.perk .ef{font-size:.87rem}
+.perk .cd{font-size:.8rem;color:var(--muted)}
+.perk .cd b{color:var(--ink);font-weight:700}
+.kind{font-size:.66rem;font-weight:700;padding:0 7px;border-radius:999px;border:1px solid currentColor;line-height:1.6;color:var(--kc)}
+.pbar{height:5px;border-radius:3px;background:var(--chip);overflow:hidden;margin-top:4px}
+.pbar i{display:block;height:100%;background:var(--def)}
+.psum{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:.86rem}
+.psum b{font-family:var(--mono);font-size:1.1rem}
 .ptips{margin:0;padding-left:1.1em;font-size:.88rem;display:flex;flex-direction:column;gap:6px}
 .card.tips{gap:10px}
 .card.tips p{padding-top:10px;border-top:1px solid var(--line)}
@@ -160,6 +230,7 @@ main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:14px calc(9
   <button class="tab" role="tab" data-tab="pit" style="--tc:var(--pit)"><svg viewBox="0 0 24 24"><circle class="ic" cx="12" cy="12" r="8"/><path class="ic" d="M7 6c2 3 2 9 0 12M17 6c-2 3-2 9 0 12"/></svg>투수</button>
   <button class="tab" role="tab" data-tab="def" style="--tc:var(--def)"><svg viewBox="0 0 24 24"><path class="ic" d="M6 10a6 6 0 0 1 12 0v4a6 6 0 0 1-12 0z M9 8v6 M12 7v7 M15 8v6"/></svg>수비·주루</button>
   <button class="tab" role="tab" data-tab="build" style="--tc:var(--stitch)"><svg viewBox="0 0 24 24"><circle class="ic" cx="12" cy="8" r="4"/><path class="ic" d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>빌드</button>
+  <button class="tab" role="tab" data-tab="my" style="--tc:var(--csi)"><svg viewBox="0 0 24 24"><rect class="ic" x="3" y="5" width="18" height="14" rx="2"/><circle class="ic" cx="9" cy="11" r="2.5"/><path class="ic" d="M14 10h4M14 14h4M6 16c.8-1.6 5.2-1.6 6 0"/></svg>내 선수</button>
   <button class="tab" role="tab" data-tab="guide" style="--tc:var(--ink)"><svg viewBox="0 0 24 24"><path class="ic" d="M5 4h10l4 4v12H5z M9 12h6 M9 16h6"/></svg>가이드</button>
 </div></nav>
 
@@ -361,7 +432,7 @@ const PT={
  SP:{ko:'스플리터',c:'var(--csp)',v:[0,-.9]},
  CH:{ko:'체인지업',c:'var(--cch)',v:[.45,-.7]}};
 let ph='R',bh='R',pv='plan';
-try{ph=localStorage.getItem('rtts-ph')||'R';bh=localStorage.getItem('rtts-bh')||'R';pv=localStorage.getItem('rtts-pv')||'plan';}catch(e){}
+try{ph=localStorage.getItem('rtts-ph')||'R';bh=localStorage.getItem('rtts-bh')||'R';pv=localStorage.getItem('rtts-pv')||'live';}catch(e){}
 const MU=()=>ph===bh?'same':'opp';
 const ROLES=[
  {p:'4S',job:'카운트 · 높은 결정구',same:[[-1,-1],[0,2]],opp:[[-1,-1],[1,2]],
@@ -418,6 +489,8 @@ function zoneSVG(marks,o={}){
     g+=`<text x="${sx>0?X0+W:X0}" y="${Y0+W+16}" text-anchor="${sx>0?'end':'start'}" font-size="10" font-weight="700" fill="var(--ink)">몸쪽 →</text>`.replace('몸쪽 →',sx>0?'몸쪽 →':'← 몸쪽');
     g+=`<text x="${sx>0?X0:X0+W}" y="${Y0+W+16}" text-anchor="${sx>0?'start':'end'}" font-size="10" fill="var(--muted)">${sx>0?'← 바깥쪽':'바깥쪽 →'}</text>`;
   }
+  if(o.ghost){const q=o.ghost,t=PT[q.p];const gx=X0+(2+sx*q.h)*C+C/2,gy=Y0+(2-q.v)*C+C/2;
+    g+=`<circle cx="${gx}" cy="${gy}" r="${R}" fill="none" stroke="${t.c}" stroke-width="2" stroke-dasharray="3 2"/><text x="${gx}" y="${gy+R+10}" text-anchor="middle" font-size="8" fill="var(--muted)">직전</text>`;}
   const seen={}, pts=marks.map((m,i)=>{
     const [p,h,v]=m; const key=h+','+v; seen[key]=(seen[key]||0)+1;
     let x=X0+(2+sx*h)*C+C/2, y=Y0+(2-v)*C+C/2;
@@ -472,6 +545,248 @@ function planHTML(){
   </ol><p class="goal" style="margin-top:8px">실제 야구의 투구 원리를 게임에 맞춘 추천입니다. 내 구종 능력치와 상대 타자에 따라 조정하세요.</p></div></div>`;
   return h;
 }
+// ===== 실전 도우미 =====
+const CAND={
+ first:{same:[['4S',-1,-1,'가장 안전한 초구. 코너 스트라이크는 토큰 점수'],['SI',1,-1,'쳐도 땅볼. 투구 수 절약'],['SL',-1,-1,'직구를 노리는 타자에게 카운트 슬라이더']],
+        opp:[['4S',-1,-1,'가장 안전한 초구'],['SI',-1,0,'바깥 모서리로 흘러 들어감'],['CH',-1,-1,'직구 노리는 타자 타이밍 뺏기']]},
+ even:{same:[['4S',1,1,'높은 직구로 눈을 위로'],['SL',-1,-1,'바깥 모서리 스트라이크'],['SI',1,-1,'몸쪽 낮게 땅볼 유도'],['4S',-1,-1,'바깥 낮은 모서리']],
+       opp:[['4S',1,1,'몸쪽 높은 직구'],['CH',-1,-1,'바깥으로 도망가는 체인지업'],['4S',-1,-1,'바깥 낮은 모서리'],['SI',-1,0,'바깥 모서리']]},
+ ahead:{same:[['SP',0,-2,'존 바로 아래. 최고 결정구'],['SL',-2,-2,'바깥으로 도망가며 떨어짐'],['4S',0,2,'존 위 높은 직구로 헛스윙']],
+        opp:[['SP',0,-2,'존 바로 아래. 최고 결정구'],['CH',-1,-2,'바깥 낮게 떨어지는 체인지업'],['4S',1,2,'몸쪽 존 위 직구'],['SL',2,-2,'몸쪽 발끝 백풋 슬라이더']]},
+ behind:{same:[['SI',1,-1,'스트라이크가 필요할 때. 쳐도 땅볼'],['4S',-1,-1,'가장 제구 쉬운 코스'],['SL',-1,-1,'직구를 노리는 타자 허 찌르기']],
+         opp:[['4S',-1,-1,'가장 제구 쉬운 코스'],['SI',-1,0,'바깥 모서리'],['CH',-1,-1,'직구 노리는 타자 허 찌르기']]},
+ full:{same:[['SL',-1,-1,'존 모서리에 걸치는 슬라이더'],['4S',1,1,'몸쪽 높게 힘으로'],['SP',0,-1,'존 안 낮게 떨어뜨리기']],
+       opp:[['CH',-1,-1,'존 모서리에 걸치는 체인지업'],['4S',1,1,'몸쪽 높게 힘으로'],['SP',0,-1,'존 안 낮게 떨어뜨리기']]}};
+const DP={same:[['SI',1,-1,'병살 유도: 몸쪽 낮은 싱커'],['SP',0,-2,'빗맞은 땅볼']],opp:[['SI',-1,-1,'병살 유도: 바깥 낮은 싱커'],['CH',-1,-2,'끝에서 떨어지는 땅볼']]};
+const L0=()=>({b:0,s:0,o:0,r:[0,0,0],hist:[],early:false,msg:''});
+let L=L0(),undo=[];
+try{const x=JSON.parse(localStorage.getItem('rtts-live')||'null'); if(x) L=Object.assign(L0(),x);}catch(e){}
+const saveL=()=>{try{localStorage.setItem('rtts-live',JSON.stringify(L))}catch(e){}};
+function situ(){const {b,s}=L; if(b===0&&s===0)return 'first'; if(b===3&&s===2)return 'full'; if(s===2)return 'ahead'; if(b>=2&&b>s)return 'behind'; return 'even';}
+const SITU_KO={first:'초구',even:'카운트 싸움',ahead:'유리한 카운트 · 결정구',behind:'불리한 카운트 · 스트라이크 필요',full:'풀카운트'};
+function recs(){
+  const mu=MU(); const list=[];
+  const add=(c,sc,tag)=>{const f=list.find(x=>x.p===c[0]&&x.h===c[1]&&x.v===c[2]); if(f){f.sc=Math.max(f.sc,sc);return;} list.push({p:c[0],h:c[1],v:c[2],why:c[3],sc,tag:tag||''});};
+  CAND[situ()][mu].forEach((c,i)=>add(c,10-i*1.5));
+  if(L.r[0]&&L.o<2&&L.s<2) DP[mu].forEach((c,i)=>add(c,10.5-i,'병살'));
+  const last=L.hist.filter(x=>x.p).slice(-1)[0], prev=L.hist.filter(x=>x.p).slice(-2,-1)[0];
+  list.forEach(c=>{
+    const notes=[];
+    if(last){
+      if(c.p===last.p&&c.h===last.h&&c.v===last.v){c.sc-=8;}
+      else if(c.p===last.p){c.sc-=1;}
+      if(last.v!==0&&Math.sign(c.v)!==Math.sign(last.v)){c.sc+=1.5;notes.push('직전 공과 높이 반대');}
+      if(last.h!==0&&c.h!==0&&Math.sign(c.h)!==Math.sign(last.h)){c.sc+=.8;notes.push('직전 공과 좌우 반대');}
+      if(c.p!==last.p&&PT[c.p]&&((c.p==='CH'||c.p==='SP')!==(last.p==='CH'||last.p==='SP'))&&notes.length<2) notes.push('속도 변화');
+    }
+    if(prev&&last&&c.p===last.p&&c.p===prev.p)c.sc-=2;
+    if(L.early&&situ()!=='ahead'&&(c.p==='SI'||c.v===-1)){c.sc+=1.2;}
+    c.note=notes.join(' · ');
+  });
+  return list.sort((a,b)=>b.sc-a.sc).slice(0,3);
+}
+function liveHTML(){
+  const mu=MU(), rs=recs(), last=L.hist.filter(x=>x.p).slice(-1)[0];
+  const dots=(n,max,col)=>Array.from({length:max},(_,i)=>`<i class="${i<n?'on':''}" style="--oc:${col}"></i>`).join('');
+  const tg=(k,val,l)=>`<button type="button" data-${k}="${val}" aria-pressed="${(k==='ph'?ph:bh)===val}">${l}</button>`;
+  const warns=[];
+  if((L.r[1]||L.r[2])&&L.s===2) warns.push('<b>득점권 위기</b> · 지금이 Bear Down(L2/LT) 쓸 타이밍입니다.');
+  if(L.b===3&&L.s<2) warns.push('<b>볼넷 주의</b> · 한가운데 말고 존 안 모서리로.');
+  if(L.r[0]&&L.o<2&&L.s<2) warns.push('<b>병살 찬스</b> · 낮은 공으로 땅볼을 유도하세요.');
+  let h=`<div class="live">
+  <div class="hands"><div><p class="lab">내 투수</p><div class="seg">${tg('ph','R','우투')}${tg('ph','L','좌투')}</div></div><div><p class="lab">상대 타자</p><div class="seg">${tg('bh','R','우타')}${tg('bh','L','좌타')}</div></div></div>
+  <div class="board">
+    <div class="cnts">
+      <div class="crow"><span class="lb">B</span>${dots(L.b,3,'var(--def)')}</div>
+      <div class="crow"><span class="lb">S</span>${dots(L.s,2,'var(--csi)')}</div>
+      <button type="button" class="crow" data-act="out" aria-label="아웃 수 바꾸기"><span class="lb">O</span>${dots(L.o,2,'var(--stitch)')}<small>탭해서 변경</small></button>
+    </div>
+    <div><div class="dia">
+      <button type="button" class="b2" data-base="1" aria-pressed="${!!L.r[1]}" aria-label="2루 주자"></button>
+      <button type="button" class="b3" data-base="2" aria-pressed="${!!L.r[2]}" aria-label="3루 주자"></button>
+      <button type="button" class="b1" data-base="0" aria-pressed="${!!L.r[0]}" aria-label="1루 주자"></button>
+    </div><div class="dia-lab">주자 탭</div></div>
+    <div class="brow">
+      <button type="button" class="mini" data-act="early" aria-pressed="${L.early}">초반 이닝 · 투구 수 절약</button>
+      <button type="button" class="mini" data-act="undo" ${undo.length?'':'disabled'}>↶ 되돌리기</button>
+      <button type="button" class="mini" data-act="reset">새 경기</button>
+    </div>
+  </div>
+  ${L.msg?`<div class="flash">${L.msg}</div>`:''}
+  <div class="zcard"><span class="cnt">${L.b}-${L.s} · ${SITU_KO[situ()]} · ${mu==='same'?'같은 손':'반대 손'}</span><h3>다음 공 추천</h3>
+  ${warns.map(w=>`<div class="warn">${w}</div>`).join('')}
+  ${zoneSVG(rs.map(r=>[r.p,r.h,r.v]),{num:true,ghost:last})}
+  <ol class="rlist">${rs.map((r,i)=>`<li class="${i===0?'top':''}"><span class="pdot" style="--pc:${PT[r.p].c}">${i+1}</span><span><b>${PT[r.p].ko}</b> · ${pos(r.h,r.v)}<span class="why">${r.tag?'['+r.tag+'] ':''}${r.why}${r.note?' · '+r.note:''}</span></span><button type="button" class="throw" style="--pc:${PT[r.p].c}" data-throw="${i}">던짐</button></li>`).join('')}</ol>
+  </div>
+  <div class="res">
+    <button type="button" data-act="ball" style="--rc:var(--def)">볼</button>
+    <button type="button" data-act="strike" style="--rc:var(--stitch)">스트라이크</button>
+    <button type="button" data-act="foul" style="--rc:var(--csi)">파울</button>
+    <button type="button" data-act="play" style="--rc:var(--muted)">인플레이</button>
+  </div>
+  ${L.hist.length?`<div><p class="lab" style="font-size:.72rem;font-weight:700;color:var(--muted);margin:0 0 6px">이번 타석</p><ul class="hist">${L.hist.map((x,i)=>`<li>${i+1}. ${x.p?PT[x.p].ko:'?'}${x.res?' → '+x.res:''}</li>`).join('')}</ul></div>`:''}
+  <p class="hint">사용법: 추천 공의 <b>던짐</b>을 누르고 → 결과(볼·스트라이크·파울·인플레이)를 누르세요. 인플레이 후 아웃·주자는 직접 탭해서 맞춥니다.</p>
+  </div>`;
+  return h;
+}
+function liveAct(t,arg){
+  if(t!=='undo'){undo.push(JSON.stringify(L)); if(undo.length>40)undo.shift();}
+  const last=L.hist[L.hist.length-1], tag=r=>{if(last&&!last.res)last.res=r; else L.hist.push({p:null,res:r});};
+  const endAB=m=>{L.b=0;L.s=0;L.hist=[];L.msg=m; if(L.o>=3){L.o=0;L.r=[0,0,0];L.msg=m+' · 이닝 종료';}};
+  L.msg='';
+  if(t==='undo'){const x=undo.pop(); if(x)L=JSON.parse(x);}
+  else if(t==='reset'){L=L0();}
+  else if(t==='early'){L.early=!L.early;}
+  else if(t==='out'){L.o=(L.o+1)%3;}
+  else if(t==='base'){L.r[arg]=L.r[arg]?0:1;}
+  else if(t==='throw'){const r=recs()[arg]; if(r){ if(last&&!last.res&&last.p) last.p=r.p,last.h=r.h,last.v=r.v; else L.hist.push({p:r.p,h:r.h,v:r.v}); L.msg=PT[r.p].ko+' 던짐 · 결과를 누르세요';}}
+  else if(t==='ball'){tag('볼'); L.b++; if(L.b>=4){ if(!L.r[0])L.r[0]=1; else if(!L.r[1])L.r[1]=1; else if(!L.r[2])L.r[2]=1; endAB('볼넷 · 다음 타자');}}
+  else if(t==='strike'){tag('스트라이크'); L.s++; if(L.s>=3){L.o++; endAB('삼진! · 다음 타자');}}
+  else if(t==='foul'){tag('파울'); if(L.s<2)L.s++;}
+  else if(t==='play'){tag('인플레이'); endAB('타석 종료 · 아웃·주자를 탭해서 맞추세요');}
+  saveL(); render();
+}
+// ===== 내 선수 카드 =====
+const TGT=[85,75,65];
+let MY={build:0,name:'',v:{},tg:{}};
+try{const x=JSON.parse(localStorage.getItem('rtts-my')||'null'); if(x) MY=Object.assign(MY,x);}catch(e){}
+const saveMY=()=>{try{localStorage.setItem('rtts-my',JSON.stringify(MY))}catch(e){}};
+const slug=n=>n.replace(/[^a-z0-9]/gi,'');
+const KOR=n=>{for(const k of ['pit','hit','def'])for(const g of D[k])for(const it of g.items)if(it[0]===n)return it[1];return '';};
+const myAtts=()=>B[MY.build].t.flatMap((arr,i)=>arr.map(n=>({n,tier:i})));
+const tgOf=a=>{const t=MY.tg[MY.build+':'+a.n]; return t===undefined||t===''?TGT[a.tier]:+t;};
+function myRecHTML(){
+  const as=myAtts(); const filled=as.filter(a=>MY.v[a.n]!==undefined&&MY.v[a.n]!=='');
+  if(!filled.length) return `<span class="k">다음 토큰은 여기에</span><h3>현재 능력치를 입력하면 추천이 나옵니다</h3><small>게임의 업그레이드 화면에 보이는 숫자를 그대로 넣으세요.</small>`;
+  const sc=as.map(a=>{const cur=MY.v[a.n]===undefined||MY.v[a.n]===''?null:+MY.v[a.n]; const gap=cur===null?0:Math.max(0,tgOf(a)-cur); return {...a,cur,gap,score:gap*[3,2,1][a.tier]};}).filter(a=>a.gap>0).sort((x,y)=>y.score-x.score);
+  const empty=as.length-filled.length;
+  if(!sc.length){
+    const nx=[]; for(const k in PERKS)for(const x of PERKS[k]) if(x[3]==='a'&&x[4]&&!MY.perks[x[0]]) x[4].forEach(([n,m])=>{const v=MY.v[n]; if(v!==undefined&&v!==''&&+v<m) nx.push({n,m,v:+v,pk:x[0]});});
+    nx.sort((a,b)=>(a.m-a.v)-(b.m-b.v));
+    return `<span class="k">다음 토큰은 여기에</span><h3>목표 달성! 이제 퍽 해금을 노려보세요</h3>${nx.length?`<ol>${nx.slice(0,3).map(a=>`<li><b>${esc(a.n)}</b> ${KOR(a.n)} · ${a.v} → ${a.m} <small>(퍽 ${a.pk} 해금)</small></li>`).join('')}</ol>`:''}<small>${empty?`비어 있는 칸 ${empty}개를 채우거나, `:''}목표치를 올려 보세요.</small>`;}
+  const ph2=n=>{for(const k in PERKS)for(const x of PERKS[k])if(x[3]==='a'&&x[4]&&!MY.perks[x[0]]){const r=x[4].find(q=>q[0]===n); if(r&&(+MY.v[n])<r[1]) return ` · <b>${r[1]}</b> 달성 시 퍽 <b>${x[0]}</b> 해금`;} return '';};
+  return `<span class="k">다음 토큰은 여기에</span><h3>${esc(MY.name||'내 선수')} · ${B[MY.build].name}</h3><ol>${sc.slice(0,3).map(a=>`<li><b>${esc(a.n)}</b> ${KOR(a.n)} · ${a.cur} → ${tgOf(a)} <small>(${a.tier+1}순위, ${a.gap} 남음${ph2(a.n)})</small></li>`).join('')}</ol>${empty?`<small>빈 칸 ${empty}개는 추천에서 빠져 있습니다.</small>`:''}`;
+}
+function barW(a){const cur=+MY.v[a.n]||0; return Math.min(100,Math.round(cur/tgOf(a)*100));}
+function myHTML(){
+  const seg=`<div class="seg" role="group" aria-label="내 선수 보기"><button type="button" data-myv="plan" aria-pressed="${myv==='plan'}">토큰 플래너</button><button type="button" data-myv="perk" aria-pressed="${myv==='perk'}">퍽 체크리스트</button></div>`;
+  if(myv==='perk') return `<div class="my">${seg}${perkHTML()}</div>`;
+  const b=B[MY.build], as=myAtts();
+  let h=`<div class="my">${seg}<div class="card"><div class="two">
+    <div class="field"><label for="my-name">선수 이름</label><input id="my-name" type="text" maxlength="20" placeholder="예: 형관우" value="${esc(MY.name)}"></div>
+    <div class="field"><label for="my-build">빌드</label><select id="my-build">${B.map((x,i)=>`<option value="${i}" ${i===MY.build?'selected':''}>${x.name}</option>`).join('')}</select></div>
+  </div></div>
+  <div class="recbox" id="myrec">${myRecHTML()}</div>
+  <div class="build" style="--bc:${BC[b.k]}"><div class="bh"><span class="role">${b.role}</span><h3>능력치 입력</h3><p>현재 값을 넣으면 목표까지 남은 양이 막대로 보입니다. 목표치는 순위별 기본값(85·75·65)이며 바꿀 수 있습니다.</p></div>
+  <div class="colh"><span>능력치</span><span>현재</span><span>목표</span></div>`;
+  as.forEach(a=>{const id=slug(a.n), w=barW(a);
+    h+=`<div class="att"><div class="nm"><code>${esc(a.n)}</code><span>${KOR(a.n)} <span class="tag ${a.tier===0?'t-star':''}" style="display:inline;margin-left:4px">${a.tier+1}순위</span></span></div>
+    <input id="my-v-${id}" data-att="${esc(a.n)}" type="number" inputmode="numeric" min="0" max="125" placeholder="-" value="${MY.v[a.n]??''}" aria-label="${esc(a.n)} 현재 값">
+    <input id="my-t-${id}" class="tg" data-tg="${esc(a.n)}" type="number" inputmode="numeric" min="0" max="125" value="${tgOf(a)}" aria-label="${esc(a.n)} 목표">
+    <div class="bar"><i id="bar-${id}" class="${w>=100?'done':''}" style="width:${w}%"></i></div></div>`;});
+  h+=`</div><div class="card"><span class="k">후순위 (토큰 아끼기)</span><p>${b.skip.map(n=>`<b>${esc(n)}</b> ${KOR(n)}`).join(' · ')}</p><p class="goal" style="margin:0;color:var(--muted);font-size:.8rem">입력한 값은 이 폰에만 저장됩니다. Safari 방문 기록·데이터를 지우면 사라집니다.</p></div></div>`;
+  return h;
+}
+// ===== 퍽 체크리스트 =====
+// kind: a=능력치로 해금, r=기록 한 번, s=시즌 기록, c=통산 누적, w=수상
+const KIND={a:['능력치','var(--def)'],r:['기록 달성','var(--csi)'],s:['시즌 기록','var(--csi)'],c:['통산 누적','var(--hit)'],w:['수상','var(--stitch)']};
+const PERKS={
+ pit:[
+  ['Lone Wolf','이닝을 마무리할 때 제구 보너스','통산 500이닝 투구','c'],
+  ['Cannon Arms','팀이 지고 있을 때 외야수 송구가 더 강해짐','한 달 동안 탈삼진 15개','s'],
+  ['Hotshot','팀이 지고 있을 때 구속 보너스','사이영상 수상','w'],
+  ['First Strike','동점일 때 타석 초반 변화량(Break) 보너스','시즌 K/9(9이닝당 탈삼진) 8.0 이상으로 마치기','s'],
+  ['Pulse Pounder','원정 경기에서 삼진을 쌓으면 구속 보너스','원정 경기 통산 탈삼진 250개','c'],
+  ['Conductor','타자를 잡아야 할 때(결정구) 변화량 보너스','통산 탈삼진 500개','c'],
+  ['Battle Tested','체력이 낮을 때 위기에서 변화량 보너스','통산 탈삼진 200개 + 100경기 등판','c'],
+  ['Theft Detection','낮 경기에 주자가 있을 때 제구 보너스','Control 75 이상','a',[['Control',75]]],
+  ['Last Stand','경기 후반 주자가 있을 때 상대 타자 파워 감소','HR/9 80 이상','a',[['HR/9',80]]],
+  ['Corner Painter','승부처에서 제구 보너스','Control 80 이상','a',[['Control',80]]],
+  ['Recharge','홈 경기에서 체력이 낮을 때 구속 보너스','홈 경기 통산 탈삼진 500개','c'],
+  ['Precision Strike','접전에서 제구 정확도 보너스','득점권 상황 통산 탈삼진 200개','c'],
+  ['Flamethrower','위기 탈출 상황에서 구속 보너스','평균 구속(Velocity) 85 이상','a',[['Velocity',85]]],
+  ['Filthy Break','상대 공격을 틀어막는 변화량 보너스','월드시리즈 MVP','w']],
+ hit:[
+  ['Lead Off Magic','이닝 선두타자일 때 컨택 보너스','마이너리그에서 이닝 선두타자로 안타','r'],
+  ['Sizzling Hot','3연속 안타 뒤 선구안 보너스','연속 경기 안타 기록 달성','r'],
+  ['Inner Peace','가운데 공에 컨택 보너스','통산 장타 10개','c'],
+  ['Heart Attack','지고 있을 때 타구 속도 보너스','MLB 경기 끝내기 홈런','r'],
+  ['Down But Not Out','지고 있을 때 컨택 보너스','팀 내 최고 타율로 시즌 마치기','s'],
+  ['Rally Time','경기 후반 컨택 보너스','MLB 경기 끝내기 안타','r'],
+  ['Running on Fumes','상대 투수가 지쳤을 때 가운데 공 컨택 보너스','한 시즌 홈 경기 안타 75개','s'],
+  ['Fore!','지고 있고 주자가 있을 때 타구 속도 보너스','MVP 수상','w'],
+  ['Oppo-Taco','득점권에서 바깥쪽 공 컨택 보너스','밀어쳐서 홈런','r'],
+  ['Life Line','경기 후반 지고 있을 때 컨택 보너스','끝내기 안타','r'],
+  ['Eagle Eye','어려운 상황에서 선구안 보너스','한 시리즈에서 안타 10개','r'],
+  ['Off The Radar','유리한 카운트에서 살짝 바깥쪽 공 컨택 보너스','좌투수 상대 안타 60개 + 우투수 상대 안타 90개','c'],
+  ['Ice-Water Veins','승부처에서 타구 속도 보너스','시즌 OPS .900 이상','s'],
+  ['Frozen Rope','접전에서 컨택 보너스','포스트시즌 한 경기 3안타','r'],
+  ['Wake Up','3연속 삼진 뒤 선구안 보너스','3타석 연속 삼진','r'],
+  ['Rattled','승부처에서 상대 실책 증가','Speed 75 + Contact vs L·R 80 이상','a',[['Speed',75],['Contact vs L',80],['Contact vs R',80]]],
+  ['Jump Start','카운트 초반 몸쪽 공 컨택 보너스','Plate Vision 80 이상','a',[['Plate Vision',80]]],
+  ['Green Light','유리한 카운트·이기고 있을 때 타구 속도 보너스','Power vs L·R 85 이상','a',[['Power vs L',85],['Power vs R',85]]],
+  ['Top Floor','이기고 있고 주자가 있을 때 타구 속도 보너스','통산 타점 500개','c'],
+  ['Bunt Cheese','기습 번트 효과 향상','희생번트 1개','r'],
+  ['Insider Info','2아웃 전 몸쪽 공 컨택 보너스','MLB 통산 1,000안타','c'],
+  ['Clear For Takeoff','크게 유리한 카운트(2-0·3-0·3-1)에서 타구 속도 보너스','3-0 카운트에서 홈런','r'],
+  ['Spark Plug','경기 후반 지고 있을 때 스윙 타이밍 향상','통산 타점 250 + Plate Vision 70 + Contact vs L·R 70','c',[['Plate Vision',70],['Contact vs L',70],['Contact vs R',70]]],
+  ['Defibrillator','지고 있을 때 선구안 보너스','한 시즌 볼넷 80개','s'],
+  ['Scorched','경기 후반 접전에서 타구 속도 보너스','통산 장타율 .500 이상 + 1,500타석','c']],
+ def:[
+  ['Slick Fielding','이닝을 끝낼 때 수비 보너스','Fielding 80 이상','a',[['Fielding',80]]],
+  ['Safety Net','이기고 있을 때 투수 뒤 백업 반응 보너스','Reaction 70 이상','a',[['Reaction',70]]],
+  ['Lockdown','지고 있을 때 반응 보너스','Reaction 80 이상','a',[['Reaction',80]]],
+  ['Pinpoint Accuracy','주자가 많을 때 송구 정확도 보너스','Arm Accuracy 80 이상','a',[['Arm Accuracy',80]]],
+  ['Flashing The Leather','1루 주자가 있을 때 수비 보너스','Arm Strength·Arm Accuracy·Fielding 모두 70 이상','a',[['Arm Strength',70],['Arm Accuracy',70],['Fielding',70]]],
+  ['Cannon Arm','주자가 있을 때 어깨 힘 보너스','한 시즌 보살 20개 + Arm Strength 80 이상','s',[['Arm Strength',80]]],
+  ['Defensive Stalwart','동점·1루 주자 있을 때 송구 정확도 보너스','통산 보살 100개','c'],
+  ['Stronghold','홈에서 동점을 지킬 때 어깨 힘 보너스','통산 500경기 출전','c'],
+  ['Stout Defender','출루를 막는 수비 보너스','통산 풋아웃 1,000개','c']],
+ run:[
+  ['Swift Bandit','도루로 압박할 때 스피드 보너스','Speed 70 이상','a',[['Speed',70]]],
+  ['Quick And Easy','경기 초반 압박할 때 스피드 보너스','Stealing 70 이상','a',[['Stealing',70]]],
+  ['On Your Mark','접전에서 도루 스피드 보너스','한 달 도루 10개 + Speed 65 이상','s',[['Speed',65]]],
+  ['Breakaway Speed','낮 경기·이기고 있을 때 도루 스피드 보너스','한 경기 도루 2개','r'],
+  ['Agile Reflexes','원정 경기 초반 도루 스피드 보너스','한 시리즈 도루 5개','r'],
+  ['Crowd Favorite','홈 경기 후반 상대 실책 증가','한 시즌 장타 50개','s'],
+  ['High-Risk, High-Reward','연장전에 상대 투수가 지쳤을 때 도루 스피드 보너스','한 시즌 도루 40개','s'],
+  ['Fleet-Footed','원정 경기·지고 있을 때 도루 스피드 보너스','통산 도루 100개','c'],
+  ['Base Commander','지고 있을 때 도루 스피드 보너스','단일 시즌 도루 기록 경신','w']]};
+const PCAT={pit:'투수',hit:'타격',def:'수비',run:'주루'};
+// 검색용
+D.perk=Object.keys(PERKS).map(k=>({en:'PERKS · '+PCAT[k],ko:'퍽',sum:'해금 조건 → 효과',items:PERKS[k].map(x=>[x[0],PCAT[k]+' 퍽',0,x[1]+' · 해금: '+x[2]])}));
+TAB_KO.perk='퍽';
+let myv='plan', pcat=null;
+try{myv=localStorage.getItem('rtts-myv')||'plan';}catch(e){}
+MY.perks=MY.perks||{};
+function reqProg(req){
+  if(!req) return null;
+  const vals=req.map(([n,m])=>{const v=MY.v[n]; return v===undefined||v===''?null:Math.min(1,(+v)/m);});
+  if(vals.some(v=>v===null)){const names=myAtts().map(a=>a.n); return {miss:true,noin:req.some(([n])=>!names.includes(n))};}
+  return {pct:Math.round(Math.min(...vals)*100), txt:req.map(([n,m])=>`${n} ${MY.v[n]}/${m}`).join(' · ')};
+}
+function perkHTML(){
+  const bk=B[MY.build].k, cat=pcat||(bk==='pit'?'pit':bk==='def'?'def':'hit');
+  const list=PERKS[cat].map((x,i)=>({x,i,got:!!MY.perks[x[0]]}));
+  const order='arscw';
+  list.sort((a,b)=>(a.got-b.got)||(order.indexOf(a.x[3])-order.indexOf(b.x[3]))||(a.i-b.i));
+  const got=list.filter(a=>a.got).length;
+  let h=`<div class="seg" role="group" aria-label="퍽 종류">${Object.keys(PCAT).map(k=>`<button type="button" data-pcat="${k}" aria-pressed="${k===cat}">${PCAT[k]}</button>`).join('')}</div>
+  <div class="card"><div class="psum"><span>${PCAT[cat]} 퍽 해금</span><b>${got} / ${list.length}</b></div>
+  <div class="pbar"><i style="width:${Math.round(got/list.length*100)}%"></i></div>
+  <p class="goal" style="margin:4px 0 0;color:var(--muted);font-size:.8rem"><b style="color:var(--def)">능력치</b> 퍽은 토큰만으로 해금할 수 있어 가장 빠릅니다. 해금한 퍽은 Perks 화면에서 장착하고, 토큰으로 레벨을 올리면 더 자주 발동합니다.</p></div>
+  <div class="group">`;
+  list.forEach(({x,got})=>{
+    const [n,ef,cd,k,req]=x, kd=KIND[k], pr=got?null:reqProg(req);
+    h+=`<div class="perk ${got?'got':''}"><button type="button" class="chk" data-perk="${esc(n)}" aria-pressed="${got}" aria-label="${esc(n)} 해금 표시">${got?'<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}</button>
+    <div><div class="pn"><b>${esc(n)}</b><span class="kind" style="--kc:${kd[1]}">${kd[0]}</span></div>
+    <div class="ef">${ef}</div><div class="cd">해금: <b>${cd}</b></div>
+    ${pr?(pr.miss?`<div class="cd" style="font-size:.74rem">${pr.noin?'지금 빌드의 토큰 플래너에 없는 능력치입니다. 게임에서 직접 확인하세요':'토큰 플래너에 값을 넣으면 진행도가 보입니다'}</div>`:`<div class="pbar"><i style="width:${pr.pct}%"></i></div><div class="cd" style="font-size:.74rem">${pr.txt}${pr.pct>=100?' · <b style="color:var(--def)">조건 달성!</b>':''}</div>`):''}
+    </div></div>`;
+  });
+  h+=`</div><p class="hint">해금 조건은 공략 자료를 번역한 것입니다. 게임 화면 문구와 다르면 게임 쪽이 맞습니다.</p>`;
+  return h;
+}
 const GUIDE=`
 <div class="sec-label">토큰 쓰는 법</div>
 <div class="card"><span class="k">STEP 1</span><h3>토큰 모으기</h3><p>플레이마다 화면에 뜨는 <b style="color:var(--def)">초록 +</b>/<b style="color:var(--stitch)">빨강 −</b> 숫자가 토큰 점수입니다. <b>100점이 모이면 토큰 1개</b>가 됩니다. 경기 전 챌린지와 훈련 미니게임 Gold 등급으로도 받습니다.</p></div>
@@ -502,14 +817,15 @@ function render(){
   const match=it=>(!onlyStar||it[2]===1)&&(!term||(it[0]+' '+it[1]+' '+it[3]).toLowerCase().includes(term));
   let html='';
   if(term||onlyStar){
-    const keys=(term||!D[tab]||tab==='term')?(term?['hit','pit','def','term']:['hit','pit','def']):[tab];
+    const keys=(term||!D[tab]||tab==='term')?(term?['hit','pit','def','perk','term']:['hit','pit','def']):[tab];
     keys.forEach(k=>D[k].forEach(g=>{const its=g.items.filter(match); if(its.length) html+=groupHTML({...g,en:TAB_KO[k]+' · '+g.en},k,its);}));
     if(!html) html=`<div class="empty">'${esc(q.value)}'에 맞는 능력치·용어가 없습니다.<br>영어 이름 일부(예: arm, clutch)로 검색해 보세요.</div>`;
   } else if(tab==='guide'){ html=GUIDE; D.term.forEach(g=>html+=groupHTML(g,'term',g.items)); }
   else if(tab==='build'){ html=buildHTML(); }
+  else if(tab==='my'){ html=myHTML(); }
   else if(tab==='pit'){
-    html=`<div class="seg" role="group" aria-label="투수 보기"><button type="button" data-pv="plan" aria-pressed="${pv==='plan'}">볼배합</button><button type="button" data-pv="stat" aria-pressed="${pv==='stat'}">능력치</button></div>`;
-    if(pv==='plan') html+=planHTML(); else { html+=MIXCARD; D.pit.forEach(g=>html+=groupHTML(g,'pit',g.items)); }
+    html=`<div class="seg" role="group" aria-label="투수 보기"><button type="button" data-pv="live" aria-pressed="${pv==='live'}">실전</button><button type="button" data-pv="plan" aria-pressed="${pv==='plan'}">볼배합</button><button type="button" data-pv="stat" aria-pressed="${pv==='stat'}">능력치</button></div>`;
+    if(pv==='live') html+=liveHTML(); else if(pv==='plan') html+=planHTML(); else { html+=MIXCARD; D.pit.forEach(g=>html+=groupHTML(g,'pit',g.items)); }
   }
   else { if(tab==='hit') html+=PCI; D[tab].forEach(g=>html+=groupHTML(g,tab,g.items)); }
   main.innerHTML=html;
@@ -519,8 +835,28 @@ document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
   render(); window.scrollTo(0,0);
 }));
 q.addEventListener('input',render);
+main.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.id==='my-name'){MY.name=t.value;}
+  else if(t.dataset.att){MY.v[t.dataset.att]=t.value;}
+  else if(t.dataset.tg){MY.tg[MY.build+':'+t.dataset.tg]=t.value;}
+  else return;
+  saveMY();
+  const a=myAtts().find(x=>x.n===(t.dataset.att||t.dataset.tg));
+  if(a){const bar=document.getElementById('bar-'+slug(a.n)); if(bar){const w=barW(a); bar.style.width=w+'%'; bar.className=w>=100?'done':'';}}
+  const rb=document.getElementById('myrec'); if(rb) rb.innerHTML=myRecHTML();
+});
+main.addEventListener('change',e=>{ if(e.target.id==='my-build'){MY.build=+e.target.value; saveMY(); render();} });
 main.addEventListener('click',e=>{
   const s=e.target.closest('[data-bf]'); if(s){bf=s.dataset.bf;render();return;}
+  const pk=e.target.closest('[data-perk],[data-pcat],[data-myv]');
+  if(pk){const d=pk.dataset;
+    if(d.perk){ if(MY.perks[d.perk]) delete MY.perks[d.perk]; else MY.perks[d.perk]=1; saveMY(); }
+    if(d.pcat) pcat=d.pcat;
+    if(d.myv){ myv=d.myv; try{localStorage.setItem('rtts-myv',myv)}catch(err){} }
+    const y=window.scrollY; render(); if(d.perk) window.scrollTo(0,y); return;}
+  const a=e.target.closest('[data-act],[data-base],[data-throw]');
+  if(a){const d=a.dataset; if(d.act)liveAct(d.act); else if(d.base)liveAct('base',+d.base); else liveAct('throw',+d.throw); return;}
   const v=e.target.closest('[data-pv],[data-ph],[data-bh]');
   if(v){const d=v.dataset; if(d.pv)pv=d.pv; if(d.ph)ph=d.ph; if(d.bh)bh=d.bh;
     try{localStorage.setItem('rtts-pv',pv);localStorage.setItem('rtts-ph',ph);localStorage.setItem('rtts-bh',bh);}catch(err){}
