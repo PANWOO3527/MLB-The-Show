@@ -23,16 +23,17 @@
 :root{
   --bg:#EEF1F4; --card:#FFFFFF; --ink:#14213A; --muted:#5B667A; --line:#D5DBE3;
   --stitch:#C62F2F; --hit:#1F5FBF; --pit:#C62F2F; --def:#2E7D5B; --chip:#E4E9F0; --bar:#FFFFFFEE;
+  --c4s:#C62F2F; --csi:#C8721C; --csl:#1F5FBF; --csp:#7440C4; --cch:#2B7F52; --dotink:#FFFFFF; --zonefill:#F4F6F9;
   --display:"Black Han Sans","Noto Sans KR",sans-serif;
   --body:"Noto Sans KR",-apple-system,system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0E1524; --card:#172134; --ink:#E7ECF3; --muted:#9AA6BA; --line:#2A3650;
-  --stitch:#FF6B5E; --hit:#6FA8FF; --pit:#FF6B5E; --def:#5FCB9A; --chip:#223049; --bar:#111A2BEE; color-scheme:dark}}
+  --stitch:#FF6B5E; --hit:#6FA8FF; --pit:#FF6B5E; --def:#5FCB9A; --chip:#223049; --bar:#111A2BEE; --c4s:#FF6B5E; --csi:#F2A65A; --csl:#6FA8FF; --csp:#B794FF; --cch:#5FCB9A; --dotink:#0E1524; --zonefill:#1C2840; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0E1524; --card:#172134; --ink:#E7ECF3; --muted:#9AA6BA; --line:#2A3650;
-  --stitch:#FF6B5E; --hit:#6FA8FF; --pit:#FF6B5E; --def:#5FCB9A; --chip:#223049; --bar:#111A2BEE; color-scheme:dark}
+  --stitch:#FF6B5E; --hit:#6FA8FF; --pit:#FF6B5E; --def:#5FCB9A; --chip:#223049; --bar:#111A2BEE; --c4s:#FF6B5E; --csi:#F2A65A; --csl:#6FA8FF; --csp:#B794FF; --cch:#5FCB9A; --dotink:#0E1524; --zonefill:#1C2840; color-scheme:dark}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;margin:0}
@@ -112,6 +113,31 @@ main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:14px calc(9
 .why b{color:var(--ink)}
 @media (max-width:420px){.why{padding-left:14px}}
 .term .en{color:var(--stitch)}
+.pv{display:flex;flex-direction:column;gap:12px}
+.hands{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hands .lab{font-size:.72rem;font-weight:700;color:var(--muted);margin:0 0 4px 4px}
+.matchup{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:.88rem}
+.matchup b{color:var(--pit)}
+.zgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.zcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.zcard .cnt{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--pit);font-weight:700}
+.zcard h3{margin:0;font-size:1rem}
+.zcard .goal{margin:0;font-size:.84rem;color:var(--muted)}
+.zsvg{width:100%;max-width:250px;align-self:center;display:block}
+.leg{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:.86rem}
+.leg li{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start}
+.pdot{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 5px;border-radius:12px;background:var(--pc);color:var(--dotink);font-family:var(--mono);font-size:.68rem;font-weight:700}
+.leg b{font-weight:700}
+.pkey{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.8rem;color:var(--muted)}
+.pkey span{display:inline-flex;align-items:center;gap:5px}
+.pkey i{width:10px;height:10px;border-radius:50%;background:var(--pc);display:inline-block}
+.rolegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.rcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center}
+.rcard svg{width:96px;height:auto}
+.rcard h4{margin:0;font-size:.95rem;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.rcard .job{font-size:.72rem;font-weight:700;color:var(--muted)}
+.rcard p{margin:4px 0 0;font-size:.82rem;min-width:0}
+.ptips{margin:0;padding-left:1.1em;font-size:.88rem;display:flex;flex-direction:column;gap:6px}
 .card.tips{gap:10px}
 .card.tips p{padding-top:10px;border-top:1px solid var(--line)}
 .card.tips .k+p{border-top:0;padding-top:0}
@@ -250,8 +276,8 @@ const TAB_KO={hit:"타자",pit:"투수",def:"수비·주루",term:"용어"};
 const B=[
  {k:"pit",role:"STARTING PITCHER · 파이어볼러",name:"선발투수 (파이어볼러)",desc:"강속구와 삼진으로 이닝을 길게 먹는 에이스",
   t:[["K/9 R","K/9 L"],["H/9 R","Velocity"],["Stamina","Control"]],skip:["HR/9","Durability"],
-  mix:["4-Seam Fastball","Slider","Splitter","Changeup"],
-  why:"높게 던지는 <b>포심</b>과 낮게 떨어지는 <b>스플리터</b>가 같은 궤적으로 오다 위아래로 갈라집니다. 투스트라이크 이후 바깥으로 빠지는 <b>슬라이더</b>로 헛스윙을 뺏습니다.",
+  mix:["4-Seam Fastball","Slider","Splitter","Changeup","Sinker"],
+  why:"높게 던지는 <b>포심</b>과 낮게 떨어지는 <b>스플리터</b>가 같은 궤적으로 오다 위아래로 갈라집니다. 같은 손 타자에게는 <b>슬라이더</b>, 반대 손 타자에게는 <b>체인지업</b>이 결정구입니다. <b>싱커</b>는 땅볼로 투구 수를 아끼는 공입니다. 투수 탭의 '볼배합'에서 코스까지 볼 수 있습니다.",
   tip:"선발은 체력이 떨어지면 모든 수치가 같이 떨어집니다. <b>Stamina</b>를 70 이상은 확보해 두세요."},
  {k:"pit",role:"STARTING PITCHER · 기교파",name:"선발투수 (제구·기교형)",desc:"구속보다 코너 제구와 변화구로 맞혀 잡는 스타일",
   t:[["Control","H/9 R"],["H/9 L","Break"],["Stamina","Pitching Clutch"]],skip:["HR/9","Velocity"],
@@ -327,6 +353,125 @@ function groupHTML(g,cls,items){
 }
 const PCI=`<div class="pci"><svg viewBox="0 0 92 92" aria-hidden="true"><rect x="10" y="6" width="72" height="80" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/><ellipse cx="46" cy="46" rx="30" ry="24" fill="var(--hit)" fill-opacity=".15" stroke="var(--hit)" stroke-width="2"/><ellipse cx="46" cy="46" rx="13" ry="10" fill="var(--hit)" fill-opacity=".4" stroke="var(--hit)" stroke-width="2"/></svg><p><b>바깥 원</b>은 공을 맞히는 범위로 Contact·Vision이 키웁니다. <b>안쪽 원</b>은 정타 구역입니다. Power는 맞은 뒤 날아가는 힘입니다.</p></div>`;
 const MIXCARD=`<div class="card"><span class="k">구종 조합 3원칙</span><h3>타자를 속이는 세 가지 차이</h3><p><b>속도</b>: 빠른 직구 다음 느린 체인지업·커브는 같은 폼이라 타이밍이 무너집니다.<br><b>방향</b>: 싱커·투심(팔 쪽)과 슬라이더·커터(반대쪽)를 섞으면 좌우로 흔들 수 있습니다.<br><b>높이</b>: 높은 포심과 낮게 떨어지는 스플리터·커브는 처음엔 같은 공처럼 보입니다.</p><p style="color:var(--muted)">스타일별 추천 조합은 빌드 탭에 있습니다.</p></div>`;
+// ===== 볼배합 =====
+const PT={
+ '4S':{ko:'포심',c:'var(--c4s)',v:[0,.25]},
+ SI:{ko:'싱커',c:'var(--csi)',v:[.6,-.6]},
+ SL:{ko:'슬라이더',c:'var(--csl)',v:[-.8,-.35]},
+ SP:{ko:'스플리터',c:'var(--csp)',v:[0,-.9]},
+ CH:{ko:'체인지업',c:'var(--cch)',v:[.45,-.7]}};
+let ph='R',bh='R',pv='plan';
+try{ph=localStorage.getItem('rtts-ph')||'R';bh=localStorage.getItem('rtts-bh')||'R';pv=localStorage.getItem('rtts-pv')||'plan';}catch(e){}
+const MU=()=>ph===bh?'same':'opp';
+const ROLES=[
+ {p:'4S',job:'카운트 · 높은 결정구',same:[[-1,-1],[0,2]],opp:[[-1,-1],[1,2]],
+  t:{same:'가장 빠른 공. 낮은 모서리로 스트라이크를 잡고, 투스트라이크 뒤에는 존 위로 빼서 헛스윙을 노립니다.',opp:'바깥 낮은 모서리로 카운트, 투스트라이크 뒤에는 몸쪽 높게 존 위로 빼서 헛스윙.'}},
+ {p:'SI',job:'땅볼 · 카운트',same:[[1,-1]],opp:[[-1,0]],
+  t:{same:'몸쪽 낮게 파고들어 빗맞은 땅볼. 병살 상황과 투구 수 아낄 때 1순위.',opp:'반대 손 타자에게는 바깥으로 흘러 나가는 공. 바깥 모서리 카운트용.'}},
+ {p:'SL',job:'결정구 (같은 손)',same:[[-1,-1],[-2,-2]],opp:[[2,-2]],
+  t:{same:'같은 손 타자 상대 최고의 결정구. 바깥 낮은 곳에서 존 밖으로 도망가게.',opp:'반대 손 타자에게는 몸쪽 발끝 백풋 슬라이더로만. 가운데로 몰리면 장타.'}},
+ {p:'SP',job:'만능 결정구',same:[[0,-2]],opp:[[0,-2]],
+  t:{same:'직구처럼 오다 뚝 떨어짐. 커서를 존 바로 아래에 두면 직구로 착각해 헛스윙.',opp:'좌우 상관없이 통하는 결정구. 존 바로 아래로.'}},
+ {p:'CH',job:'결정구 (반대 손)',same:[[-1,-2]],opp:[[-1,-1],[-1,-2]],
+  t:{same:'같은 손 타자에게는 몸쪽으로 휘어 들어와 위험. 스플리터가 있으니 가끔만.',opp:'반대 손 타자 상대 핵심 무기. 바깥쪽으로 느리게 도망가며 떨어져 타이밍을 뺏습니다.'}}];
+const SIT=[
+ {c:'0-0 · 초구',t:'스트라이크부터 잡기',g:'초구 스트라이크를 잡으면 이후가 편해집니다. 루킹·코너 스트라이크는 토큰 점수도 줍니다.',
+  same:[['4S',-1,-1,'가장 안전한 초구'],['SI',1,-1,'쳐도 땅볼']],opp:[['4S',-1,-1,'가장 안전한 초구'],['SI',-1,0,'바깥 모서리로 흘러 들어감']]},
+ {c:'0-1 · 1-1',t:'직전 공의 반대편 보여주기',g:'직전 공과 다른 높이·다른 속도로 던져 타자 눈을 흔듭니다.',
+  same:[['4S',1,1,'직전이 낮은 공이었다면'],['SL',-1,-1,'직전이 몸쪽 공이었다면']],opp:[['4S',1,1,'직전이 낮은 공이었다면'],['CH',-1,-1,'직전이 직구였다면']]},
+ {c:'0-2 · 1-2',t:'유리할 때: 존 밖으로 유인',g:'스트라이크를 줄 필요가 없습니다. 존 밖으로 반 칸 빼서 헛스윙을 유도하세요.',
+  same:[['SP',0,-2,'최고 결정구'],['SL',-2,-2,'바깥으로 도망가며 떨어짐'],['4S',0,2,'높은 직구로 헛스윙']],opp:[['SP',0,-2,'최고 결정구'],['CH',-1,-2,'바깥으로 느리게 떨어짐'],['4S',1,2,'몸쪽 높은 직구']]},
+ {c:'2-0 · 3-1',t:'불리할 때: 모서리 스트라이크',g:'볼넷은 피해야 하지만 한가운데는 장타입니다. 존 안 모서리 한 칸을 노리세요.',
+  same:[['SI',1,-1,'쳐도 땅볼'],['4S',-1,-1,'가장 제구 쉬운 코스']],opp:[['4S',-1,-1,'가장 제구 쉬운 코스'],['SI',-1,0,'바깥 모서리']]},
+ {c:'3-2 · 풀카운트',t:'가장 자신 있는 공',g:'존 안에 넣되 헛스윙도 나오는 공. Break 수치가 가장 높은 구종을 고르세요.',
+  same:[['SL',-1,-1,'존 모서리에 걸치게'],['4S',1,1,'몸쪽 높게 힘으로']],opp:[['CH',-1,-1,'존 모서리에 걸치게'],['4S',1,1,'몸쪽 높게 힘으로']]},
+ {c:'주자 1루 · 0~1아웃',t:'병살 노리기',g:'낮은 공은 땅볼이 됩니다. 병살 하나면 아웃 2개에 투구 수도 절약.',
+  same:[['SI',1,-1,'땅볼 1순위'],['SP',0,-2,'빗맞은 땅볼']],opp:[['SI',-1,-1,'바깥 낮게'],['CH',-1,-2,'끝에서 떨어지는 땅볼']]}];
+const SEQ={
+ same:[
+  {t:'하이-로우 (파이어볼러 기본)',m:[['4S',-1,-1],['4S',1,1],['SP',0,-2]],x:'① 낮은 모서리로 카운트 → ② 높은 직구로 눈을 위로 끌어올림 → ③ 같은 궤적에서 떨어지는 스플리터로 헛스윙.'},
+  {t:'좌우 흔들기',m:[['SI',1,-1],['SL',-1,-1],['SL',-2,-2]],x:'① 몸쪽 싱커로 몸을 움츠리게 → ② 바깥 슬라이더로 스트라이크 → ③ 같은 코스에서 존 밖으로 더 빼서 헛스윙.'},
+  {t:'땅볼로 빨리 끝내기',m:[['SI',1,-1],['4S',-1,-1],['SP',0,-2]],x:'투구 수를 아낄 때. 세 공 모두 낮아서 쳐도 땅볼입니다. 초반 이닝에 추천.'}],
+ opp:[
+  {t:'하이-로우 (파이어볼러 기본)',m:[['4S',-1,-1],['4S',1,1],['SP',0,-2]],x:'① 낮은 모서리로 카운트 → ② 몸쪽 높은 직구 → ③ 떨어지는 스플리터. 반대 손 타자에게도 그대로 통합니다.'},
+  {t:'바깥 체인지업',m:[['SI',-1,0],['CH',-1,-2],['4S',1,1]],x:'① 싱커로 바깥 모서리 → ② 체인지업이 같은 쪽으로 느리게 떨어져 헛스윙 → ③ 반대편 몸쪽 높은 직구로 마무리.'},
+  {t:'백풋 슬라이더',m:[['4S',-1,-1],['CH',-1,-2],['SL',2,-2]],x:'① 바깥 직구 → ② 바깥 체인지업으로 시선을 바깥에 묶은 뒤 → ③ 몸쪽 발끝으로 파고드는 슬라이더.'}]};
+function pos(h,v){
+  const V={2:'존 위(볼)',1:'높게',0:'가운데 높이','-1':'낮게','-2':'존 아래(볼)'}[v];
+  const H={2:'몸쪽 존 밖',1:'몸쪽',0:'가운데','-1':'바깥쪽','-2':'바깥쪽 존 밖'}[h];
+  return H+' · '+V+(Math.abs(h)===1&&Math.abs(v)===1?' 모서리':'');
+}
+function zoneSVG(marks,o={}){
+  const C=o.small?26:30,X0=o.small?10:45,Y0=o.small?8:22,W=C*5,VW=X0*2+W,VH=Y0+W+(o.small?8:26),R=o.small?9:11;
+  const armX=ph==='R'?1:-1, sx=bh==='R'?1:-1;
+  let g='';
+  for(let r=0;r<5;r++)for(let c=0;c<5;c++){
+    const inZ=r>0&&r<4&&c>0&&c<4, mid=r===2&&c===2;
+    g+=`<rect x="${X0+c*C}" y="${Y0+r*C}" width="${C}" height="${C}" fill="${mid?'var(--stitch)':inZ?'var(--zonefill)':'none'}" fill-opacity="${mid?.14:1}" stroke="var(--line)" stroke-width="1"/>`;
+  }
+  g+=`<rect x="${X0+C}" y="${Y0+C}" width="${C*3}" height="${C*3}" fill="none" stroke="var(--ink)" stroke-width="2"/>`;
+  if(!o.small){
+    const inX=sx>0?X0+W+22:X0-22;
+    g+=`<circle cx="${inX}" cy="${Y0+C*1.6}" r="7" fill="var(--muted)"/><rect x="${inX-7}" y="${Y0+C*1.6+10}" width="14" height="46" rx="6" fill="var(--muted)"/><text x="${inX}" y="${Y0+C*1.6+72}" text-anchor="middle" font-size="10" font-weight="700" fill="var(--muted)">${bh==='R'?'우타':'좌타'}</text>`;
+    g+=`<text x="${X0+W/2}" y="${Y0-8}" text-anchor="middle" font-size="10" fill="var(--muted)">높게</text>`;
+    g+=`<text x="${X0+W/2}" y="${Y0+W+16}" text-anchor="middle" font-size="10" fill="var(--muted)">낮게</text>`;
+    g+=`<text x="${sx>0?X0+W:X0}" y="${Y0+W+16}" text-anchor="${sx>0?'end':'start'}" font-size="10" font-weight="700" fill="var(--ink)">몸쪽 →</text>`.replace('몸쪽 →',sx>0?'몸쪽 →':'← 몸쪽');
+    g+=`<text x="${sx>0?X0:X0+W}" y="${Y0+W+16}" text-anchor="${sx>0?'start':'end'}" font-size="10" fill="var(--muted)">${sx>0?'← 바깥쪽':'바깥쪽 →'}</text>`;
+  }
+  const seen={}, pts=marks.map((m,i)=>{
+    const [p,h,v]=m; const key=h+','+v; seen[key]=(seen[key]||0)+1;
+    let x=X0+(2+sx*h)*C+C/2, y=Y0+(2-v)*C+C/2;
+    if(seen[key]>1) x+= (seen[key]===2?9:-9), y+=6;
+    return {p,x,y,n:o.num?i+1:null};
+  });
+  if(o.seq&&pts.length>1) g+=`<polyline points="${pts.map(q=>q.x+','+q.y).join(' ')}" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+  pts.forEach(q=>{
+    const t=PT[q.p]; const dx=armX*t.v[0]*(C*.9), dy=-t.v[1]*(C*.9), L=Math.hypot(dx,dy);
+    if(L>10){
+      const ux=dx/L,uy=dy/L, sx0=q.x-dx, sy0=q.y-dy, ex=q.x-ux*(R+3), ey=q.y-uy*(R+3);
+      const hx=ex-ux*6, hy=ey-uy*6, px=-uy*4, py=ux*4;
+      g+=`<line x1="${sx0.toFixed(1)}" y1="${sy0.toFixed(1)}" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="${t.c}" stroke-width="2.2" stroke-linecap="round"/>`;
+      g+=`<polygon points="${ex.toFixed(1)},${ey.toFixed(1)} ${(hx+px).toFixed(1)},${(hy+py).toFixed(1)} ${(hx-px).toFixed(1)},${(hy-py).toFixed(1)}" fill="${t.c}"/>`;
+    }
+  });
+  pts.forEach(q=>{
+    const t=PT[q.p];
+    g+=`<circle cx="${q.x}" cy="${q.y}" r="${R}" fill="${t.c}" stroke="var(--card)" stroke-width="2"/><text x="${q.x}" y="${q.y+(q.n?4:3)}" text-anchor="middle" font-size="${q.n?11:(o.small?6.5:7.5)}" font-weight="700" font-family="JetBrains Mono,monospace" fill="var(--dotink)">${q.n||q.p}</text>`;
+  });
+  return `<svg class="zsvg" viewBox="0 0 ${VW} ${VH}" role="img" aria-label="스트라이크존 투구 위치">${g}</svg>`;
+}
+const pd=p=>`<span class="pdot" style="--pc:${PT[p].c}">${p}</span>`;
+function planHTML(){
+  const mu=MU(), same=mu==='same';
+  const tg=(k,val,l)=>`<button type="button" data-${k}="${val}" aria-pressed="${(k==='ph'?ph:bh)===val}">${l}</button>`;
+  let h=`<div class="pv">
+  <div class="hands"><div><p class="lab">내 투수</p><div class="seg">${tg('ph','R','우투')}${tg('ph','L','좌투')}</div></div><div><p class="lab">상대 타자</p><div class="seg">${tg('bh','R','우타')}${tg('bh','L','좌타')}</div></div></div>
+  <div class="matchup">${ph==='R'?'우투':'좌투'} vs ${bh==='R'?'우타':'좌타'} · <b>${same?'같은 손 대결':'반대 손 대결'}</b><br>${same?'슬라이더가 타자 바깥으로 도망갑니다. <b>슬라이더·스플리터</b>가 결정구.':'체인지업이 타자 바깥으로 도망갑니다. <b>체인지업·스플리터</b>가 결정구.'}</div>
+  <div class="card"><span class="k">그림 읽는 법</span><p><b>투수 뒤 시점</b>(게임 기본 투구 화면) 기준입니다. 굵은 네모가 스트라이크존, 그 바깥 한 줄은 볼 구역입니다. <b>동그라미 = 커서를 놓을 곳</b>(공이 도착하는 곳)이고, 화살표는 공이 휘어 들어오는 방향입니다. 휘는 궤적은 게임이 계산하니 도착점만 맞추면 됩니다. <b style="color:var(--stitch)">빨간 칸(한가운데)은 금지</b>입니다.</p>
+  <div class="pkey">${Object.keys(PT).map(k=>`<span style="--pc:${PT[k].c}"><i></i>${k} ${PT[k].ko}</span>`).join('')}</div></div>
+  <div class="sec-label">구종별 역할</div><div class="rolegrid">`;
+  ROLES.forEach(r=>{
+    h+=`<div class="rcard">${zoneSVG(r[mu].map(([a,b])=>[r.p,a,b]),{small:true})}<div><h4>${pd(r.p)}${PT[r.p].ko}</h4><span class="job">${r.job}</span><p>${r.t[mu]}</p></div></div>`;
+  });
+  h+=`</div><div class="sec-label">카운트·상황별 코스</div><div class="zgrid">`;
+  SIT.forEach(s=>{
+    const ms=s[mu];
+    h+=`<div class="zcard"><span class="cnt">${s.c}</span><h3>${s.t}</h3><p class="goal">${s.g}</p>${zoneSVG(ms,{num:true})}<ol class="leg">${ms.map((m,i)=>`<li><span class="pdot" style="--pc:${PT[m[0]].c}">${i+1}</span><span><b>${PT[m[0]].ko}</b> · ${pos(m[1],m[2])}<br><span style="color:var(--muted)">${m[3]}</span></span></li>`).join('')}</ol></div>`;
+  });
+  h+=`</div><div class="sec-label">3구 삼진 시퀀스</div><div class="zgrid">`;
+  SEQ[mu].forEach(q=>{
+    h+=`<div class="zcard"><h3>${q.t}</h3>${zoneSVG(q.m,{num:true,seq:true})}<ol class="leg">${q.m.map((m,i)=>`<li><span class="pdot" style="--pc:${PT[m[0]].c}">${i+1}</span><span><b>${PT[m[0]].ko}</b> · ${pos(m[1],m[2])}</span></li>`).join('')}</ol><p class="goal">${q.x}</p></div>`;
+  });
+  h+=`</div><div class="card"><span class="k">파이어볼러 운영 팁</span><ol class="ptips">
+  <li><b>결정구는 존 밖으로 반 칸 더.</b> 실투가 나도 볼이 될 뿐 한가운데로 몰리지 않습니다.</li>
+  <li><b>같은 구종을 같은 곳에 두 번 연속 던지지 마세요.</b> 두 번째는 타자가 기다리고 있습니다.</li>
+  <li><b>1~3회는 싱커로 맞혀 잡기.</b> 투구 수를 아껴야 선발로 6이닝 이상 버팁니다. 삼진은 위기와 후반에.</li>
+  <li><b>같은 타자 세 번째 대결부터는 결정구 순서를 바꾸세요.</b> 스플리터로 잡았으면 이번엔 슬라이더·체인지업.</li>
+  <li><b>득점권 위기에는 Bear Down(L2/LT) + 결정구.</b> 횟수가 한정되니 후반 위기용으로 아껴 두세요.</li>
+  <li><b>토큰은 결정구에.</b> 스플리터·슬라이더의 Break, 포심의 Velocity를 올리면 같은 코스도 더 잘 통합니다.</li>
+  </ol><p class="goal" style="margin-top:8px">실제 야구의 투구 원리를 게임에 맞춘 추천입니다. 내 구종 능력치와 상대 타자에 따라 조정하세요.</p></div></div>`;
+  return h;
+}
 const GUIDE=`
 <div class="sec-label">토큰 쓰는 법</div>
 <div class="card"><span class="k">STEP 1</span><h3>토큰 모으기</h3><p>플레이마다 화면에 뜨는 <b style="color:var(--def)">초록 +</b>/<b style="color:var(--stitch)">빨강 −</b> 숫자가 토큰 점수입니다. <b>100점이 모이면 토큰 1개</b>가 됩니다. 경기 전 챌린지와 훈련 미니게임 Gold 등급으로도 받습니다.</p></div>
@@ -362,7 +507,11 @@ function render(){
     if(!html) html=`<div class="empty">'${esc(q.value)}'에 맞는 능력치·용어가 없습니다.<br>영어 이름 일부(예: arm, clutch)로 검색해 보세요.</div>`;
   } else if(tab==='guide'){ html=GUIDE; D.term.forEach(g=>html+=groupHTML(g,'term',g.items)); }
   else if(tab==='build'){ html=buildHTML(); }
-  else { if(tab==='hit') html+=PCI; if(tab==='pit') html+=MIXCARD; D[tab].forEach(g=>html+=groupHTML(g,tab,g.items)); }
+  else if(tab==='pit'){
+    html=`<div class="seg" role="group" aria-label="투수 보기"><button type="button" data-pv="plan" aria-pressed="${pv==='plan'}">볼배합</button><button type="button" data-pv="stat" aria-pressed="${pv==='stat'}">능력치</button></div>`;
+    if(pv==='plan') html+=planHTML(); else { html+=MIXCARD; D.pit.forEach(g=>html+=groupHTML(g,'pit',g.items)); }
+  }
+  else { if(tab==='hit') html+=PCI; D[tab].forEach(g=>html+=groupHTML(g,tab,g.items)); }
   main.innerHTML=html;
 }
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
@@ -372,6 +521,10 @@ document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
 q.addEventListener('input',render);
 main.addEventListener('click',e=>{
   const s=e.target.closest('[data-bf]'); if(s){bf=s.dataset.bf;render();return;}
+  const v=e.target.closest('[data-pv],[data-ph],[data-bh]');
+  if(v){const d=v.dataset; if(d.pv)pv=d.pv; if(d.ph)ph=d.ph; if(d.bh)bh=d.bh;
+    try{localStorage.setItem('rtts-pv',pv);localStorage.setItem('rtts-ph',ph);localStorage.setItem('rtts-bh',bh);}catch(err){}
+    render();return;}
   const c=e.target.closest('[data-q]'); if(c){q.value=c.dataset.q;render();window.scrollTo(0,0);}
 });
 star.addEventListener('click',()=>{star.setAttribute('aria-pressed',star.getAttribute('aria-pressed')==='true'?'false':'true');render();});
